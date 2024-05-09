@@ -1,3 +1,4 @@
+using InkWell.Application.Identity.Middlewares;
 using InkWell.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<UserContextMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
