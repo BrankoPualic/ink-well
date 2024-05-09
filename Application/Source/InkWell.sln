@@ -13,19 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8AE8ACEF-6BA7-4D90-8061-E2FDD62C5649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Common", "InkWell.Common\InkWell.Common.csproj", "{04BCE83E-27E5-47D3-819D-A7DCC2FDBFC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.Common", "InkWell.Common\InkWell.Common.csproj", "{04BCE83E-27E5-47D3-819D-A7DCC2FDBFC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Application", "InkWell.Application\InkWell.Application.csproj", "{FADE70A4-B5DD-4C1E-B755-31AEF5941FE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.Application", "InkWell.Application\InkWell.Application.csproj", "{FADE70A4-B5DD-4C1E-B755-31AEF5941FE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Domain", "InkWell.Domain\InkWell.Domain.csproj", "{41186563-5AF2-4A68-AEE1-C1628171ABD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.Domain", "InkWell.Domain\InkWell.Domain.csproj", "{41186563-5AF2-4A68-AEE1-C1628171ABD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Persistence", "InkWell.Persistence\InkWell.Persistence.csproj", "{E613B360-D5E1-4F21-A315-471EFFCB5244}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.Persistence", "InkWell.Persistence\InkWell.Persistence.csproj", "{E613B360-D5E1-4F21-A315-471EFFCB5244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Infrastructure", "InkWell.Infrastructure\InkWell.Infrastructure.csproj", "{67975B08-B388-4E5A-A7CE-200F3CE6ECB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.Infrastructure", "InkWell.Infrastructure\InkWell.Infrastructure.csproj", "{67975B08-B388-4E5A-A7CE-200F3CE6ECB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.DependencyInjection", "InkWell.DependencyInjection\InkWell.DependencyInjection.csproj", "{9CA7284F-C5F4-40DC-8A63-9ACA73F1F0BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.DependencyInjection", "InkWell.DependencyInjection\InkWell.DependencyInjection.csproj", "{9CA7284F-C5F4-40DC-8A63-9ACA73F1F0BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.WebApi", "InkWell.WebApi\InkWell.WebApi.csproj", "{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkWell.WebApi", "InkWell.WebApi\InkWell.WebApi.csproj", "{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Test", "InkWell.Test\InkWell.Test.csproj", "{785AAA70-37A5-4E88-B8C1-8B25A5F02540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkWell.Application.Identity", "InkWell.Application.Identity\InkWell.Application.Identity.csproj", "{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,14 @@ Global
 		{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785AAA70-37A5-4E88-B8C1-8B25A5F02540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785AAA70-37A5-4E88-B8C1-8B25A5F02540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785AAA70-37A5-4E88-B8C1-8B25A5F02540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785AAA70-37A5-4E88-B8C1-8B25A5F02540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +85,8 @@ Global
 		{67975B08-B388-4E5A-A7CE-200F3CE6ECB0} = {6DC2BA34-66D5-4AE9-B7AA-450E7326C021}
 		{9CA7284F-C5F4-40DC-8A63-9ACA73F1F0BF} = {6DC2BA34-66D5-4AE9-B7AA-450E7326C021}
 		{0A0D04A6-9135-4ED4-BB0F-1C8D1F071143} = {B9977F50-ABD8-43EC-AB6E-E1CC2B7E27E6}
+		{785AAA70-37A5-4E88-B8C1-8B25A5F02540} = {8AE8ACEF-6BA7-4D90-8061-E2FDD62C5649}
+		{D1AA6492-1A3E-4044-B592-8AD9C5D4DFDE} = {723C6B9D-BCB2-4D5B-891B-CABFAFC225CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F07949D1-BB77-4B51-AD39-ECC2580E27B8}
