@@ -29,7 +29,7 @@ internal class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
 			new UserRole
 			{
 				UserId = Guid.Parse(Constants.SYSTEM_USER_ID),
-				RoleId = (int)eUserRole.Administrator,
+				RoleId = (byte)eUserRole.Administrator,
 				IsActive = true
 			});
 	}
