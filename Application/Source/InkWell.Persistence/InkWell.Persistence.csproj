@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InkWell.Application\InkWell.Application.csproj" />
+    <ProjectReference Include="..\InkWell.Common\InkWell.Common.csproj" />
   </ItemGroup>
 
 </Project>
