@@ -1,11 +1,12 @@
-﻿using InkWell.Application.Identity.Services;
+﻿using FluentAssertions;
+using InkWell.Application.Identity.Services;
 
 namespace InkWell.Test.UnitTests;
 
 public class UserUT
 {
 	[Test]
-	public void VerifyPassword_Test()
+	public void VerifyPassword()
 	{
 		string password = "Pa$$w0rd";
 
@@ -13,6 +14,6 @@ public class UserUT
 
 		bool result = UserService.VerifyPassword(password, hashsedPassword);
 
-		Assert.That(result, Is.True);
+		result.Should().BeTrue();
 	}
 }

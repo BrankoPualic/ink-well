@@ -1,4 +1,6 @@
-﻿namespace InkWell.Application.Identity.Extensions;
+﻿using InkWell.Common;
+
+namespace InkWell.Application.Identity.Extensions;
 
 public static class UserContext
 {
@@ -6,7 +8,14 @@ public static class UserContext
 
 	public static Guid CurrentUserId
 	{
-		get => _userContextData.Value!.UserId;
+		get
+		{
+			if (_userContextData.Value == null)
+			{
+				return Guid.Parse(Constants.SYSTEM_USER_ID);
+			}
+			return _userContextData.Value.UserId;
+		}
 		set => _userContextData.Value = new UserContextData { UserId = value };
 	}
 
