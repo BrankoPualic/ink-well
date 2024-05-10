@@ -10,7 +10,7 @@ public static class UserContext
 	{
 		get
 		{
-			if (_userContextData.Value == null)
+			if (_userContextData.Value is null)
 			{
 				return Guid.Parse(Constants.SYSTEM_USER_ID);
 			}

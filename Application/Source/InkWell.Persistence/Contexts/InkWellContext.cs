@@ -39,6 +39,20 @@ public partial class InkWellContext : DbContext
 
 	public override int SaveChanges()
 	{
+		SaveByEntityState();
+
+		return base.SaveChanges();
+	}
+
+	public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+	{
+		SaveByEntityState();
+
+		return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+	}
+
+	private void SaveByEntityState()
+	{
 		IEnumerable<EntityEntry> entries = this.ChangeTracker.Entries();
 
 		foreach (EntityEntry entry in entries)
@@ -70,7 +84,5 @@ public partial class InkWellContext : DbContext
 				}
 			}
 		}
-
-		return base.SaveChanges();
 	}
 }

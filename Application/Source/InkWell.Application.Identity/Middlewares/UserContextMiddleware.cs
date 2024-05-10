@@ -1,4 +1,5 @@
 ﻿using InkWell.Application.Identity.Extensions;
+using InkWell.Common;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
@@ -15,7 +16,15 @@ public class UserContextMiddleware
 
 	public async Task InvokeAsync(HttpContext context)
 	{
-		var userIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+		string userIdClaim;
+		if (context.User.FindFirstValue(ClaimTypes.NameIdentifier) is null)
+		{
+			userIdClaim = Constants.SYSTEM_USER_ID;
+		}
+		else
+		{
+			userIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+		}
 
 		UserContext.CurrentUserId = Guid.Parse(userIdClaim);
 

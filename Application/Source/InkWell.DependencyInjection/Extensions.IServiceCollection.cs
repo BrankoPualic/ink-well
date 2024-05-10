@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using InkWell.Domain.Repositories;
+using InkWell.Persistence.Repositories;
 
 namespace InkWell.DependencyInjection;
 
@@ -48,7 +50,7 @@ public static class Extensions
 				ValidIssuer = configuration["Jwt:Issuer"],
 				ValidAudience = configuration["Jwt:Audience"],
 				IssuerSigningKey = new SymmetricSecurityKey
-				(Encoding.UTF8.GetBytes(configuration["JWT_KEY"]!)),
+				(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!)),
 				ClockSkew = TimeSpan.Zero
 			};
 		});
@@ -60,6 +62,8 @@ public static class Extensions
 	{
 		services.AddDbContext<InkWellContext>(opt => opt.UseSqlServer(
 			"Data Source=localhost;Initial Catalog=InkWell;TrustServerCertificate=true;Integrated security = true"));
+
+		services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 		return services;
 	}
