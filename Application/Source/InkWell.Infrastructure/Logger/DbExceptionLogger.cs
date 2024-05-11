@@ -4,16 +4,16 @@ using InkWell.Domain.Repositories;
 
 namespace InkWell.Infrastructure.Logger;
 
-public class DbErrorLogger : IErrorLogger
+public class DbExceptionLogger : IExceptionLogger
 {
 	private IUnitOfWork _unitOfWork;
 
-	public DbErrorLogger(IUnitOfWork unitOfWork)
+	public DbExceptionLogger(IUnitOfWork unitOfWork)
 	{
 		_unitOfWork = unitOfWork;
 	}
 
-	public Guid LogError(Exception exception)
+	public Guid LogException(Exception exception)
 	{
 		var id = Guid.NewGuid();
 

@@ -20,6 +20,7 @@ public static class Extensions
 		PersistenceServices(services);
 		ApplicationServices(services);
 		IdentityServices(services, configuration);
+		InfrastructureServices(services);
 
 		return services;
 	}
@@ -72,7 +73,7 @@ public static class Extensions
 
 	private static IServiceCollection InfrastructureServices(IServiceCollection services)
 	{
-		services.AddSingleton<IErrorLogger, DbErrorLogger>();
+		services.AddSingleton<IExceptionLogger, DbExceptionLogger>();
 
 		return services;
 	}

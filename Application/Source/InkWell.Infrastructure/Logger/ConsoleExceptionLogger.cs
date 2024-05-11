@@ -3,9 +3,9 @@ using Serilog;
 
 namespace InkWell.Infrastructure.Logger;
 
-public class ConsoleErrorLogger : IErrorLogger
+public class ConsoleExceptionLogger : IExceptionLogger
 {
-	public Guid LogError(Exception exception)
+	public Guid LogException(Exception exception)
 	{
 		var id = Guid.NewGuid();
 		Log.Error(exception, $"An Error occurred\nID: {id}\n {exception.Message}");

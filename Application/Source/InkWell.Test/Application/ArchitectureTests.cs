@@ -57,7 +57,7 @@ public class ArchitectureTests
 	[Test]
 	public void InfrastructureShouldNotHaveDependencyOnOtherLayers()
 	{
-		var assembly = typeof(Infrastructure.Logger.ConsoleErrorLogger).Assembly;
+		var assembly = typeof(Infrastructure.Logger.ConsoleExceptionLogger).Assembly;
 
 		var otherLayers = new[]
 		{
