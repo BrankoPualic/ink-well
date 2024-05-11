@@ -36,7 +36,7 @@ public class ExceptionMiddlewareTests : GlobalDbFixtureSetupAndTeardown
 	}
 
 	[Test]
-	public void LogExceptionShould_LogErrorIntoTestDatabase()
+	public void LogException_Should_LogError_IntoTestDatabase()
 	{
 		var unitOfWork = new UnitOfWork(Fixture.Context);
 		var logger = new DbExceptionLogger(unitOfWork);
