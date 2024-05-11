@@ -8,6 +8,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using InkWell.Domain.Repositories;
 using InkWell.Persistence.Repositories;
+using InkWell.Domain.Interfaces;
+using InkWell.Infrastructure.Logger;
 
 namespace InkWell.DependencyInjection;
 
@@ -64,6 +66,13 @@ public static class Extensions
 			"Data Source=localhost;Initial Catalog=InkWell;TrustServerCertificate=true;Integrated security = true"));
 
 		services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+		return services;
+	}
+
+	private static IServiceCollection InfrastructureServices(IServiceCollection services)
+	{
+		services.AddSingleton<IErrorLogger, DbErrorLogger>();
 
 		return services;
 	}

@@ -16,4 +16,5 @@ public partial class InkWellContext
 	public virtual DbSet<UserRole> UserRoles { get; set; }
 	public virtual DbSet<Category> Categories { get; set; }
 	public virtual DbSet<Post> Posts { get; set; }
+	public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
 }

@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
 	public ICategoryRepository CategoryRepository => new CategoryRepository(_context);
 
 	public IPostRepository PostRepository => new PostRepository(_context);
+	public IErrorLogRepository ErrorLogRepository => new ErrorLogRepository(_context);
 
 	public async Task<bool> Complete()
 	{

@@ -5,6 +5,7 @@ public interface IUnitOfWork
 	IUserRepository UserRepository { get; }
 	ICategoryRepository CategoryRepository { get; }
 	IPostRepository PostRepository { get; }
+	IErrorLogRepository ErrorLogRepository { get; }
 
 	Task<bool> Complete();
 

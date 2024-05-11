@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InkWell.Application.Identity\InkWell.Application.Identity.csproj" />
     <ProjectReference Include="..\InkWell.Application\InkWell.Application.csproj" />
+    <ProjectReference Include="..\InkWell.Infrastructure\InkWell.Infrastructure.csproj" />
     <ProjectReference Include="..\InkWell.Persistence\InkWell.Persistence.csproj" />
   </ItemGroup>
 
