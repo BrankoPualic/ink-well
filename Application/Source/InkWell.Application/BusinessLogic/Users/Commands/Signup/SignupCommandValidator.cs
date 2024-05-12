@@ -21,7 +21,7 @@ public class SignupCommandValidator : AbstractValidator<SignupDto>
 			.EmailAddress().WithMessage("Invalid email format.")
 			.MustAsync(async (email, cancellationToken) =>
 			{
-				return !await unitOfWork.UserRepository.UserExistAsync(email, "email", cancellationToken);
+				return !await unitOfWork.UserRepository.UserExistByEmailAsync(email, cancellationToken);
 			}).WithMessage("Account with this email already exist.")
 			.MaximumLength(60).WithMessage("Email can't be longer than 60 characters.");
 
@@ -30,7 +30,7 @@ public class SignupCommandValidator : AbstractValidator<SignupDto>
 			.Length(4, 20).WithMessage("Username must be between 4 and 20 cahracters.")
 			.MustAsync(async (username, cancellationToken) =>
 			{
-				return !await unitOfWork.UserRepository.UserExistAsync(username, "username", cancellationToken);
+				return !await unitOfWork.UserRepository.UserExistByUsernameAsync(username, cancellationToken);
 			}).WithMessage("Username already in use.");
 
 		RuleFor(u => u.Password)

@@ -22,26 +22,36 @@ public class UserRepository : RepositoryContext, IUserRepository
 		await Context.AddRangeAsync(entitiesToAdd, cancellationToken);
 	}
 
-	public async Task<bool> UserExistAsync(string value, string column, CancellationToken cancellationToken = default)
+	public async Task<bool> UserExistByEmailAsync(string email, CancellationToken cancellationToken = default)
 	{
-		bool exist = true;
-		if (column.Equals("email", StringComparison.CurrentCultureIgnoreCase))
-		{
-			exist = await Context.Users.SingleOrDefaultAsync(x => x.Email == value, cancellationToken) is not null;
-		}
-		else if (column.Equals("username", StringComparison.CurrentCultureIgnoreCase))
-		{
-			exist = await Context.Users.SingleOrDefaultAsync(x => x.Username == value, cancellationToken) is not null;
-		}
+		var exist = await Context.Users.SingleOrDefaultAsync(
+			x => x.Email == email, cancellationToken) is not null;
+
 		return exist;
 	}
 
-	public async Task<bool> UserStillActiveAsync(Guid userId, CancellationToken cancellationToken = default)
+	public async Task<bool> UserExistByUsernameAsync(string username, CancellationToken cancellationToken = default)
+	{
+		var exist = await Context.Users.SingleOrDefaultAsync(
+			x => x.Username == username, cancellationToken) is not null;
+
+		return exist;
+	}
+
+	public async Task<bool> UserStillActiveAsync(string email, CancellationToken cancellationToken = default)
 	{
 		bool exist = await Context.Users.SingleOrDefaultAsync(
-			x => x.Id == userId
+			x => x.Email == email
 			&& x.IsActive,
 			cancellationToken) is not null;
 		return exist;
+	}
+
+	public async Task<User> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default)
+	{
+		return await Context.Users
+			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
+			.ThenInclude(x => x.Role)
+			.SingleOrDefaultAsync(x => x.Email == email && x.IsActive, cancellationToken);
 	}
 }

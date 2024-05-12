@@ -1,4 +1,5 @@
-﻿using InkWell.Application.BusinessLogic.Users.Commands.Signup;
+﻿using InkWell.Application.BusinessLogic.Users.Commands.Signin;
+using InkWell.Application.BusinessLogic.Users.Commands.Signup;
 using InkWell.Application.Dtos.User;
 using InkWell.Domain.Entities.Application;
 using InkWell.WebApi.Controllers._BaseApiController;
@@ -18,6 +19,19 @@ public class AuthController : BaseApiController
 	public async Task<IActionResult> Signup([FromForm] SignupDto user)
 	{
 		var result = await Mediator.Send(new SignupCommand(user));
+
+		if (result.IsSuccess)
+		{
+			return Ok(result.Value);
+		}
+
+		return this.HandleErrorResponse<User>(result.Error);
+	}
+
+	[HttpPost("signin")]
+	public async Task<IActionResult> Signin([FromBody] SigninDto user)
+	{
+		var result = await Mediator.Send(new SigninCommand(user));
 
 		if (result.IsSuccess)
 		{
