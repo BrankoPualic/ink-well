@@ -14,7 +14,7 @@ public partial class InkWellContext : DbContext
 		_connectionString = "Data Source=localhost;Initial Catalog=InkWell;TrustServerCertificate=true;Integrated security = true";
 	}
 
-	public InkWellContext(string connectionString)
+	public InkWellContext(string connectionString) : base()
 	{
 		_connectionString = connectionString;
 	}
@@ -25,7 +25,10 @@ public partial class InkWellContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(_connectionString);
+		if (!optionsBuilder.IsConfigured)
+		{
+			optionsBuilder.UseSqlServer(_connectionString);
+		}
 
 		base.OnConfiguring(optionsBuilder);
 	}

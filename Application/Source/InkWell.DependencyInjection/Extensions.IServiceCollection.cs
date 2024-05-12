@@ -10,6 +10,8 @@ using InkWell.Domain.Repositories;
 using InkWell.Persistence.Repositories;
 using InkWell.Domain.Interfaces;
 using InkWell.Infrastructure.Logger;
+using InkWell.Application.Identity.Abstractions;
+using InkWell.Application.Identity.Services;
 
 namespace InkWell.DependencyInjection;
 
@@ -58,6 +60,8 @@ public static class Extensions
 			};
 		});
 
+		services.AddScoped<IJwtService, AuthenticationService>();
+
 		return services;
 	}
 
@@ -73,7 +77,7 @@ public static class Extensions
 
 	private static IServiceCollection InfrastructureServices(IServiceCollection services)
 	{
-		services.AddSingleton<IExceptionLogger, DbExceptionLogger>();
+		services.AddTransient<IExceptionLogger, DbExceptionLogger>();
 
 		return services;
 	}

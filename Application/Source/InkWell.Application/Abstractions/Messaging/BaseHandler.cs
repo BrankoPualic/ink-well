@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using InkWell.Application.Dtos.BaseDto;
+using InkWell.Application.Dtos._BaseDto;
 using InkWell.Domain.Repositories;
 
 namespace InkWell.Application.Abstractions.Messaging;
 
 public class BaseHandler
 {
-	protected readonly IUnitOfWork _unitOfWork;
-	protected readonly IMapper _mapper;
+	private readonly IUnitOfWork _unitOfWork;
+	private readonly IMapper _mapper;
 
 	protected BaseHandler(IUnitOfWork unitOfWork)
 	{
@@ -20,12 +20,15 @@ public class BaseHandler
 		_unitOfWork = unitOfWork;
 		_mapper = mapper;
 	}
+
+	protected IUnitOfWork UnitOfWork => _unitOfWork;
+	protected IMapper Mapper => _mapper;
 }
 
 public class BaseHandler<TRequest> : BaseHandler
 	where TRequest : BaseDto
 {
-	protected readonly IValidator<TRequest> _validator;
+	private readonly IValidator<TRequest> _validator;
 
 	public BaseHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
 	{
@@ -42,4 +45,6 @@ public class BaseHandler<TRequest> : BaseHandler
 	{
 		_validator = validator;
 	}
+
+	protected IValidator<TRequest> Validator => _validator;
 }

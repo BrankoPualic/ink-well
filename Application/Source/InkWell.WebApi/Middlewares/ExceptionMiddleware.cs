@@ -9,17 +9,32 @@ namespace InkWell.WebApi.Middlewares;
 public class ExceptionMiddleware
 {
 	private readonly RequestDelegate _next;
-	private readonly IExceptionLogger _logger;
 	private readonly IHostEnvironment _env;
 
-	public ExceptionMiddleware(RequestDelegate next, IExceptionLogger logger, IHostEnvironment env)
+	public ExceptionMiddleware(RequestDelegate next, IHostEnvironment env)
 	{
 		_next = next;
-		_logger = logger;
 		_env = env;
 	}
 
-	public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+	public async Task InvokeAsync(HttpContext context, IExceptionLogger logger)
+	{
+		try
+		{
+			await _next(context);
+		}
+		catch (Exception ex)
+		{
+			await HandleExceptionAsync(context, ex, logger, _env);
+		}
+
+		if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+		{
+			await HandleUnauthorizedAsync(context);
+		}
+	}
+
+	public async Task InvokeAsyncTest(HttpContext context, RequestDelegate next, IExceptionLogger logger)
 	{
 		try
 		{
@@ -27,7 +42,7 @@ public class ExceptionMiddleware
 		}
 		catch (Exception ex)
 		{
-			await HandleExceptionAsync(context, ex, _logger, _env);
+			await HandleExceptionAsync(context, ex, logger, _env);
 		}
 
 		if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)

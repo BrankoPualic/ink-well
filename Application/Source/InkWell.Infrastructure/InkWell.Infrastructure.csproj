@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InkWell.Application\InkWell.Application.csproj" />
+    <ProjectReference Include="..\InkWell.Persistence\InkWell.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

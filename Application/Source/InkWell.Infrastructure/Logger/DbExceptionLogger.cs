@@ -6,12 +6,14 @@ namespace InkWell.Infrastructure.Logger;
 
 public class DbExceptionLogger : IExceptionLogger
 {
-	private IUnitOfWork _unitOfWork;
+	private readonly IUnitOfWork _unitOfWork;
 
 	public DbExceptionLogger(IUnitOfWork unitOfWork)
 	{
 		_unitOfWork = unitOfWork;
 	}
+
+	public IUnitOfWork UnitOfWork => _unitOfWork;
 
 	public Guid LogException(Exception exception)
 	{
@@ -25,9 +27,9 @@ public class DbExceptionLogger : IExceptionLogger
 			Time = DateTime.UtcNow
 		};
 
-		_unitOfWork.ErrorLogRepository.Add(log);
+		UnitOfWork.ErrorLogRepository.Add(log);
 
-		_unitOfWork.Complete();
+		UnitOfWork.Complete();
 
 		return id;
 	}

@@ -20,8 +20,8 @@ public class ExceptionMiddlewareTests : GlobalDbFixtureSetupAndTeardown
 		var mockEnv = new Mock<IHostEnvironment>();
 		var middleware = new ExceptionMiddleware(
 			(context) => Task.CompletedTask,
-			mockLogger.Object,
-			mockEnv.Object);
+			mockEnv.Object
+			);
 
 		var mockHttpContext = new DefaultHttpContext();
 
@@ -30,7 +30,7 @@ public class ExceptionMiddlewareTests : GlobalDbFixtureSetupAndTeardown
 			throw new InvalidOperationException("Test exception");
 		};
 
-		await middleware.InvokeAsync(mockHttpContext, next);
+		await middleware.InvokeAsyncTest(mockHttpContext, next, mockLogger.Object);
 
 		mockLogger.Verify(logger => logger.LogException(It.IsAny<Exception>()), Times.Once);
 	}

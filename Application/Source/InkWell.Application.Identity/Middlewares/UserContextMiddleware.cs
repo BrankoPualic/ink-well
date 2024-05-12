@@ -16,18 +16,25 @@ public class UserContextMiddleware
 
 	public async Task InvokeAsync(HttpContext context)
 	{
-		string userIdClaim;
-		if (context.User.FindFirstValue(ClaimTypes.NameIdentifier) is null)
+		try
 		{
-			userIdClaim = Constants.SYSTEM_USER_ID;
+			string userIdClaim;
+			if (context.User.FindFirstValue(ClaimTypes.NameIdentifier) is null)
+			{
+				userIdClaim = Constants.SYSTEM_USER_ID;
+			}
+			else
+			{
+				userIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+			}
+
+			UserContext.CurrentUserId = Guid.Parse(userIdClaim);
+
+			await _next(context);
 		}
-		else
+		catch (Exception ex)
 		{
-			userIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+			throw new Exception(ex.Message);
 		}
-
-		UserContext.CurrentUserId = Guid.Parse(userIdClaim);
-
-		await _next(context);
 	}
 }
