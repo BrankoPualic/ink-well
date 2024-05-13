@@ -55,7 +55,7 @@ public class SigninCommandHandler : BaseHandler<SigninDto>, ICommandHandler<Sign
 			Time = DateTime.UtcNow,
 		};
 
-		UnitOfWork.SigninLogRepository.Add(log, cancellationToken);
+		UnitOfWork.SigninLogRepository.Add(log);
 
 		if (await UnitOfWork.Complete())
 		{

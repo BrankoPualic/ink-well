@@ -22,6 +22,8 @@ public class UnitOfWork : IUnitOfWork
 
 	public ISigninLogRepository SigninLogRepository => new SigninLogRepository(_context);
 
+	public IAuditRepository AuditRepository => new AuditRepository(_context);
+
 	public async Task<bool> Complete()
 	{
 		return await _context.SaveChangesAsync() > 0;

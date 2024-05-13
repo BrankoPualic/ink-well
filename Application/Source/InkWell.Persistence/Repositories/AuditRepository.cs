@@ -5,14 +5,14 @@ using InkWell.Persistence.Repositories.Context;
 
 namespace InkWell.Persistence.Repositories;
 
-public class SigninLogRepository : RepositoryContext, ISigninLogRepository
+public class AuditRepository : RepositoryContext, IAuditRepository
 {
-	public SigninLogRepository(InkWellContext context) : base(context)
+	public AuditRepository(InkWellContext context) : base(context)
 	{
 	}
 
-	public void Add(SigninLog log)
+	public void Add(Audit audit)
 	{
-		Context.SigninLogs.Add(log);
+		Context.Add(audit);
 	}
 }

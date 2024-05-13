@@ -7,6 +7,7 @@ public interface IUnitOfWork
 	IPostRepository PostRepository { get; }
 	IErrorLogRepository ErrorLogRepository { get; }
 	ISigninLogRepository SigninLogRepository { get; }
+	IAuditRepository AuditRepository { get; }
 
 	Task<bool> Complete();
 

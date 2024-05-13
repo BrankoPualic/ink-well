@@ -2,7 +2,7 @@
 
 namespace InkWell.Domain.Repositories;
 
-public interface ISigninLogRepository
+public interface IAuditRepository
 {
-	void Add(SigninLog log);
+	void Add(Audit audit);
 }
