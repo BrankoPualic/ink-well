@@ -59,6 +59,19 @@ public class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<Sign
 
 		await UnitOfWork.UserRepository.AddAsync(user, userRole, cancellationToken);
 
+		Audit log = new()
+		{
+			Id = Guid.NewGuid(),
+			EntitiyId = newUserId,
+			EntitiyTypeId = (int)eEntityType.User,
+			ActionTypeId = (int)eActionType.Insert,
+			IsSuccess = true,
+			Time = DateTime.UtcNow,
+			ExecutedBy = newUserId,
+		};
+
+		UnitOfWork.AuditRepository.Add(log);
+
 		if (await UnitOfWork.Complete())
 		{
 			var userMapped = Mapper.Map<AuthResponseDto>(user);
