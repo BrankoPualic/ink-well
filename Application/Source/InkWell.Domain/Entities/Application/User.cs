@@ -14,5 +14,6 @@ public class User : Entity
 	public DateOnly DateOfBirth { get; set; }
 	public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
 	public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
-	public virtual ICollection<SigninLog> Signins { get; set; }
+	public virtual ICollection<SigninLog> Signins { get; set; } = new HashSet<SigninLog>();
+	public virtual ICollection<Audit> Audits { get; set; } = new HashSet<Audit>();
 }

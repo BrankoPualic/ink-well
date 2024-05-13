@@ -8,7 +8,9 @@ public partial class InkWellContext
 {
 	// Entity_lu Tables
 
-	public virtual DbSet<Role_lu> Roles { get; set; }
+	public virtual DbSet<Role_lu> Roles_lu { get; set; }
+	public virtual DbSet<ActionType_lu> ActionTypes_lu { get; set; }
+	public virtual DbSet<EntityType_lu> EntityTypes_lu { get; set; }
 
 	// Application
 
@@ -18,4 +20,5 @@ public partial class InkWellContext
 	public virtual DbSet<Post> Posts { get; set; }
 	public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
 	public virtual DbSet<SigninLog> SigninLogs { get; set; }
+	public virtual DbSet<Audit> Audits { get; set; }
 }
