@@ -8,5 +8,13 @@ public class UserMapper : AutoMapperProfile
 	public UserMapper()
 	{
 		CreateMap<User, AuthResponseDto>();
+
+		CreateMap<User, UserDto>();
+
+		CreateMap<User, ProfileDto>()
+			.IncludeBase<User, UserDto>();
+
+		CreateMap<User, PersonalInformationsDto>()
+			.IncludeBase<User, ProfileDto>();
 	}
 }

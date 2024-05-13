@@ -12,6 +12,8 @@ using InkWell.Domain.Interfaces;
 using InkWell.Infrastructure.Logger;
 using InkWell.Application.Identity.Abstractions;
 using InkWell.Application.Identity.Services;
+using InkWell.Common;
+using InkWell.Common.Enums;
 
 namespace InkWell.DependencyInjection;
 
@@ -59,6 +61,26 @@ public static class Extensions
 				ClockSkew = TimeSpan.Zero
 			};
 		});
+
+		services.AddAuthorizationBuilder()
+			.AddPolicy(Constants.ADMINISTRATOR, policy => policy.RequireRole(
+				eUserRole.Administrator.ToString()
+				))
+			.AddPolicy(Constants.ADMINISTRATOR_USERADMIN, policy => policy.RequireRole(
+				eUserRole.Administrator.ToString(),
+				eUserRole.UserAdmin.ToString()
+				))
+			.AddPolicy(Constants.ADMINISTRATOR_USERADMIN_MODERATOR, policy => policy.RequireRole(
+				eUserRole.Administrator.ToString(),
+				eUserRole.UserAdmin.ToString(),
+				eUserRole.Moderator.ToString()
+				))
+			.AddPolicy(Constants.BLOGGER, policy => policy.RequireRole(
+				eUserRole.Blogger.ToString()
+				))
+			.AddPolicy(Constants.MEMBER, policy => policy.RequireRole(
+				eUserRole.Member.ToString()
+				));
 
 		services.AddScoped<IJwtService, AuthenticationService>();
 
