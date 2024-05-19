@@ -15,6 +15,7 @@ public class UserMapper : AutoMapperProfile
 			.IncludeBase<User, UserDto>();
 
 		CreateMap<User, PersonalInformationsDto>()
-			.IncludeBase<User, ProfileDto>();
+			.IncludeBase<User, ProfileDto>()
+			.ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(x => x.Role.Name).ToList()));
 	}
 }

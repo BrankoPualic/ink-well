@@ -12,4 +12,16 @@ public sealed class Constants
 	public const string ADMINISTRATOR_USERADMIN_MODERATOR = "AUAM";
 	public const string BLOGGER = "B";
 	public const string MEMBER = "M";
+
+	// Params
+
+	public const int DEFAULT_PAGE_SIZE = 10;
+	public const int MAX_PAGE_SIZE = 50;
+
+	// Queryable Extensions
+
+	public const string CONTAINS = "Contains";
+	public const string WHERE = "Where";
+	public const string ORDER_BY = "OrderBy";
+	public const string ORDER_BY_DESCENDING = "OrderByDescending";
 }

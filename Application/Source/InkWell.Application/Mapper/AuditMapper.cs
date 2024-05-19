@@ -15,6 +15,7 @@ public class AuditMapper : AutoMapperProfile
 		CreateMap<AuditDetailsJsonUpdatedFieldDto, AuditDetailsJsonUpdatedField>().ReverseMap();
 
 		CreateMap<Audit, AuditDto>()
+			.ForMember(dest => dest.EntityId, opt => opt.MapFrom(src => src.EntitiyId))
 			.ForMember(dest => dest.DetailsJson, opt => opt.MapFrom<AuditDetailsJsonResolver>())
 			.ForMember(dest => dest.ExecutedBy, opt => opt.MapFrom(src => src.User))
 			.ForMember(dest => dest.EntityType, opt => opt.MapFrom(src => Enum.GetName(typeof(eEntityType), src.EntitiyTypeId)))

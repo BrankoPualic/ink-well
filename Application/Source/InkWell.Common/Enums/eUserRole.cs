@@ -8,3 +8,9 @@ public enum eUserRole
 	UserAdmin = 4,
 	Blogger = 5
 }
+
+public enum eSortDirection
+{
+	Ascending,
+	Descending
+}
