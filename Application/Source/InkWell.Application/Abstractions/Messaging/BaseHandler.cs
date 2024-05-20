@@ -5,7 +5,7 @@ using InkWell.Domain.Repositories;
 
 namespace InkWell.Application.Abstractions.Messaging;
 
-public class BaseHandler
+public abstract class BaseHandler
 {
 	private readonly IUnitOfWork _unitOfWork;
 	private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ public class BaseHandler
 	protected IMapper Mapper => _mapper;
 }
 
-public class BaseHandler<TRequest> : BaseHandler
+public abstract class BaseHandler<TRequest> : BaseHandler
 	where TRequest : BaseDto
 {
 	private readonly IValidator<TRequest> _validator;

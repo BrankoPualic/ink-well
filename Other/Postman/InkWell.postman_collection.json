@@ -310,6 +310,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}user/89F115AF-BC56-4EB6-B163-2684B2E81822",
+							"host": [
+								"{{api-url}}user"
+							],
+							"path": [
+								"89F115AF-BC56-4EB6-B163-2684B2E81822"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

@@ -1,4 +1,6 @@
-﻿namespace InkWell.Domain.Repositories;
+﻿using InkWell.Domain.Entities.BaseEntities;
+
+namespace InkWell.Domain.Repositories;
 
 public interface IUnitOfWork
 {

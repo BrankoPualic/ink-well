@@ -5,7 +5,6 @@ using InkWell.Domain.Utilities.Params;
 using InkWell.Persistence.Contexts;
 using InkWell.Persistence.Extensions;
 using InkWell.Persistence.Repositories.Context;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
@@ -90,5 +89,15 @@ public class UserRepository : RepositoryContext, IUserRepository
 			Count = totalCount,
 			Results = await query.ToListAsync(cancellationToken)
 		};
+	}
+
+	public async Task<User> GetUserByIdAsync(Guid id, CancellationToken cancellationToken = default)
+	{
+		return await Context.Users.FindAsync(id, cancellationToken);
+	}
+
+	public async Task<IEnumerable<UserRole>> GetUserRolesAsync(Guid id, CancellationToken cancellationToken = default)
+	{
+		return await Context.UserRoles.Where(x => x.UserId.Equals(id)).ToListAsync(cancellationToken);
 	}
 }

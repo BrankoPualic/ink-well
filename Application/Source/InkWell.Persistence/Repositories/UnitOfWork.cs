@@ -1,5 +1,7 @@
-﻿using InkWell.Domain.Repositories;
+﻿using InkWell.Domain.Entities.BaseEntities;
+using InkWell.Domain.Repositories;
 using InkWell.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
 

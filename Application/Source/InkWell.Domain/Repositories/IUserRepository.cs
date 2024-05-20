@@ -16,7 +16,11 @@ public interface IUserRepository
 
 	Task<User> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default);
 
+	Task<User> GetUserByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
 	Task<DbGetAllResponse<User>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 
 	Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
+
+	Task<IEnumerable<UserRole>> GetUserRolesAsync(Guid id, CancellationToken cancellationToken = default);
 }
