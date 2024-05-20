@@ -210,6 +210,108 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetAllUsersByAdmin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}user/detailed",
+							"host": [
+								"{{api-url}}user"
+							],
+							"path": [
+								"detailed"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "minimum is 10, you can change it in Domain > Utilities > Entry Params > PageSize",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "CreatedAt",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "descending",
+									"disabled": true
+								},
+								{
+									"key": "quickSearch",
+									"value": "brane",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}user",
+							"host": [
+								"{{api-url}}user"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "minimum is 10, you can change it in Domain > Utilities > Entry Params > PageSize",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "CreatedAt",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "descending",
+									"disabled": true
+								},
+								{
+									"key": "quickSearch",
+									"value": "brane",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

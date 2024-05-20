@@ -59,7 +59,7 @@ public class UserRepository : RepositoryContext, IUserRepository
 			.SingleOrDefaultAsync(x => x.Email == email && x.IsActive, cancellationToken);
 	}
 
-	public async Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
+	public async Task<DbGetAllResponse<User>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
 	{
 		var query = Context.Users
 			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
@@ -73,7 +73,22 @@ public class UserRepository : RepositoryContext, IUserRepository
 		return new DbGetAllResponse<User>
 		{
 			Count = totalCount,
-			Results = await query.ToListAsync()
+			Results = await query.ToListAsync(cancellationToken)
+		};
+	}
+
+	public async Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
+	{
+		var query = Context.Users.AsQueryable();
+
+		int totalCount = await query.CountAsync(cancellationToken);
+
+		query = query.ApplyParams(entryParams, "Username");
+
+		return new DbGetAllResponse<User>
+		{
+			Count = totalCount,
+			Results = await query.ToListAsync(cancellationToken)
 		};
 	}
 }
