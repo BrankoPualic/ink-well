@@ -1,4 +1,6 @@
 ﻿using InkWell.Domain.Entities.Application;
+using InkWell.Domain.Utilities._DbResponses;
+using InkWell.Domain.Utilities.Params;
 
 namespace InkWell.Domain.Repositories;
 
@@ -13,4 +15,6 @@ public interface IUserRepository
 	Task<bool> UserStillActiveAsync(string email, CancellationToken cancellationToken = default);
 
 	Task<User> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default);
+
+	Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 }

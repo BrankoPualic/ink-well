@@ -11,7 +11,7 @@ internal static class QueryableExtensions
 	internal static IQueryable<T> ApplyParams<T>(
 		this IQueryable<T> query,
 		EntryParams entryParams,
-		string? searchProperty)
+		string? searchProperty = null)
 	{
 		if (entryParams.QuickSearch.HasValue() && searchProperty.HasValue())
 		{
@@ -70,7 +70,7 @@ internal static class QueryableExtensions
 		var type = typeof(T);
 		var property = type.GetProperty(sortProperty);
 		var parameter = Expression.Parameter(type, "p");
-		var propertyAccess = Expression.Property(parameter, property!);
+		var propertyAccess = Expression.MakeMemberAccess(parameter, property!);
 		var whereExpression = Expression.Lambda(propertyAccess, parameter);
 		var resultExpression = Expression.Call(
 				typeof(Queryable),

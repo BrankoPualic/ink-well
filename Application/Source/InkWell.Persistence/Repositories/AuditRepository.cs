@@ -36,7 +36,7 @@ public class AuditRepository : RepositoryContext, IAuditRepository
 
 		int totalCount = await query.CountAsync(cancellationToken);
 
-		query = query.ApplyParams(entryParams, null);
+		query = query.ApplyParams(entryParams);
 
 		DbGetAllResponse<Audit> result = new()
 		{

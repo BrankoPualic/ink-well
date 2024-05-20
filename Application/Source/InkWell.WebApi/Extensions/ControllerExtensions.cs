@@ -18,8 +18,12 @@ public static class ControllerExtensions
 			return controller.StatusCode(500, result.Error);
 		}
 
-		if (result.Error == Error.ActionForbidden
-			|| result.Error is ValidationError)
+		if (result.Error is ValidationError)
+		{
+			return controller.UnprocessableEntity(result.Error);
+		}
+
+		if (result.Error == Error.ActionForbidden)
 		{
 			return controller.StatusCode(403, result.Error);
 		}

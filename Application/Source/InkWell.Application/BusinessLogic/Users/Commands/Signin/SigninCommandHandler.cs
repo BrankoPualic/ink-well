@@ -10,7 +10,7 @@ using InkWell.Domain.Repositories;
 
 namespace InkWell.Application.BusinessLogic.Users.Commands.Signin;
 
-public class SigninCommandHandler : BaseHandler<SigninDto>, ICommandHandler<SigninCommand, AuthResponseDto>
+internal class SigninCommandHandler : BaseHandler<SigninDto>, ICommandHandler<SigninCommand, AuthResponseDto>
 {
 	private IJwtService _jwtService;
 

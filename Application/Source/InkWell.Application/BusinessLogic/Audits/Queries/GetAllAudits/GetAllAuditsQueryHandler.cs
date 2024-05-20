@@ -9,7 +9,7 @@ using InkWell.Domain.Utilities.Params;
 
 namespace InkWell.Application.BusinessLogic.Audits.Queries.GetAllAudits;
 
-public class GetAllAuditsQueryHandler : BaseHandler, IQueryHandler<GetAllAuditsQuery, GridDto<AuditDto>>
+internal class GetAllAuditsQueryHandler : BaseHandler, IQueryHandler<GetAllAuditsQuery, GridDto<AuditDto>>
 {
 	public GetAllAuditsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
 		: base(unitOfWork, mapper)

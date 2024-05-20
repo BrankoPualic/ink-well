@@ -11,7 +11,7 @@ using InkWell.Domain.Repositories;
 
 namespace InkWell.Application.BusinessLogic.Users.Commands.Signup;
 
-public class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<SignupCommand, AuthResponseDto>
+internal class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<SignupCommand, AuthResponseDto>
 {
 	private readonly IJwtService _jwtService;
 

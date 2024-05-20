@@ -1,7 +1,11 @@
 ﻿using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
+using InkWell.Domain.Utilities._DbResponses;
+using InkWell.Domain.Utilities.Params;
 using InkWell.Persistence.Contexts;
+using InkWell.Persistence.Extensions;
 using InkWell.Persistence.Repositories.Context;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
@@ -53,5 +57,23 @@ public class UserRepository : RepositoryContext, IUserRepository
 			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
 			.ThenInclude(x => x.Role)
 			.SingleOrDefaultAsync(x => x.Email == email && x.IsActive, cancellationToken);
+	}
+
+	public async Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
+	{
+		var query = Context.Users
+			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
+			.ThenInclude(x => x.Role)
+			.AsQueryable();
+
+		int totalCount = await query.CountAsync(cancellationToken);
+
+		query = query.ApplyParams(entryParams, "Username");
+
+		return new DbGetAllResponse<User>
+		{
+			Count = totalCount,
+			Results = await query.ToListAsync()
+		};
 	}
 }
