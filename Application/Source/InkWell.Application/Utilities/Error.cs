@@ -47,7 +47,7 @@ public sealed record ValidationError(string Title, string Message, int Code, Lis
 					.Select(e => new SubError(e.PropertyName, e.ErrorMessage))
 					.ToList();
 
-		var error = new ValidationError("Validation.Error", "Validation failed", StatusCodes.Status403Forbidden, subErrors);
+		var error = new ValidationError("Validation.Error", "Validation failed", StatusCodes.Status422UnprocessableEntity, subErrors);
 		return error;
 	}
 }

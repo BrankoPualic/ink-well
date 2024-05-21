@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
 using InkWell.Application.Abstractions.Messaging;
 using InkWell.Application.Dtos.Role;
+using InkWell.Application.Identity.Extensions;
 using InkWell.Application.Utilities;
+using InkWell.Common.Enums;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
 
@@ -73,16 +75,22 @@ internal class UpdateRolesCommandHandler : BaseHandler<RoleDto>, ICommandHandler
 			}
 		}
 
-		try
+		Audit log = new()
 		{
-			if (await UnitOfWork.Complete())
-			{
-				return Result.Success();
-			}
-		}
-		catch (Exception ex)
+			Id = Guid.NewGuid(),
+			EntitiyId = request.UserId,
+			EntitiyTypeId = (int)eEntityType.User,
+			ActionTypeId = (int)eActionType.Update,
+			IsSuccess = true,
+			Time = DateTime.UtcNow,
+			ExecutedBy = UserContext.CurrentUserId,
+		};
+
+		UnitOfWork.AuditRepository.Add(log);
+
+		if (await UnitOfWork.Complete())
 		{
-			throw new Exception(ex.Message, ex);
+			return Result.Success();
 		}
 
 		return Result.Failure(Error.SaveChangesFailed);

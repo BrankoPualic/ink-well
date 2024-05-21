@@ -1,8 +1,10 @@
 ﻿using InkWell.Application.BusinessLogic.Users.Commands.DeleteUser;
+using InkWell.Application.BusinessLogic.Users.Commands.Update;
 using InkWell.Application.BusinessLogic.Users.Commands.UpdateRoles;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsers;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsersByAdmin;
 using InkWell.Application.Dtos.Role;
+using InkWell.Application.Dtos.User;
 using InkWell.Common;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Params;
@@ -66,6 +68,20 @@ public class UserController : BaseApiController
 	public async Task<IActionResult> UpdateRoles([FromRoute] Guid id, [FromBody] RoleDto roles)
 	{
 		var result = await Mediator.Send(new UpdateRolesCommand(id, roles));
+
+		if (result.IsSuccess)
+		{
+			return NoContent();
+		}
+
+		return this.HandleErrorResponse<User>(result.Error);
+	}
+
+	[HttpPut]
+	[Authorize]
+	public async Task<IActionResult> Update([FromForm] EntryUpdateUserDto userDto)
+	{
+		var result = await Mediator.Send(new UpdateUserCommand(userDto));
 
 		if (result.IsSuccess)
 		{
