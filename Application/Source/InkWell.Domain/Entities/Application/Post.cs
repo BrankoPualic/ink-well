@@ -9,6 +9,7 @@ public class Post : Entity
 	public string Text { get; set; } = string.Empty;
 	public int ViewCount { get; set; }
 	public string PostImageUrl { get; set; } = string.Empty;
+	public string PublicId { get; set; } = string.Empty;
 	public Guid AuthorId { get; set; }
 	public Guid CategoryId { get; set; }
 	public virtual Category Category { get; set; }

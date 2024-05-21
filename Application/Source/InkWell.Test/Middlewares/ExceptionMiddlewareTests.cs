@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using InkWell.Domain.Interfaces;
+using InkWell.Domain.Abstractions;
 using InkWell.Infrastructure.Logger;
 using InkWell.Persistence.Repositories;
 using InkWell.Test.Database;

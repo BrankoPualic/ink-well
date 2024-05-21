@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Net;
 using InkWell.Application.Utilities;
-using InkWell.Domain.Interfaces;
+using InkWell.Domain.Abstractions;
 
 namespace InkWell.WebApi.Middlewares;
 

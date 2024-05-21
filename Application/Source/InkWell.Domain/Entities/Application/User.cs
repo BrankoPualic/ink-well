@@ -11,6 +11,7 @@ public class User : Entity
 	public string LastName { get; set; } = string.Empty;
 	public string FullName { get; set; } = string.Empty;
 	public string? ProfilePictureUrl { get; set; }
+	public string? PublicId { get; set; }
 	public DateOnly DateOfBirth { get; set; }
 	public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
 	public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();

@@ -11,6 +11,6 @@ public class SignupDto : BaseDto
 	public string LastName { get; set; } = string.Empty;
 	public string Password { get; set; } = string.Empty;
 	public string ConfirmPassword { get; set; } = string.Empty;
-	public IFormFile? ProfilePictureUrl { get; set; }
+	public IFormFile? ProfilePicture { get; set; }
 	public DateOnly DateOfBirth { get; set; }
 }

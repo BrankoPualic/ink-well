@@ -8,12 +8,14 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using InkWell.Domain.Repositories;
 using InkWell.Persistence.Repositories;
-using InkWell.Domain.Interfaces;
 using InkWell.Infrastructure.Logger;
 using InkWell.Application.Identity.Abstractions;
 using InkWell.Application.Identity.Services;
 using InkWell.Common;
 using InkWell.Common.Enums;
+using InkWell.Infrastructure.Helpers;
+using InkWell.Infrastructure.Storage;
+using InkWell.Domain.Abstractions;
 
 namespace InkWell.DependencyInjection;
 
@@ -24,7 +26,7 @@ public static class Extensions
 		PersistenceServices(services);
 		ApplicationServices(services);
 		IdentityServices(services, configuration);
-		InfrastructureServices(services);
+		InfrastructureServices(services, configuration);
 
 		return services;
 	}
@@ -97,9 +99,11 @@ public static class Extensions
 		return services;
 	}
 
-	private static IServiceCollection InfrastructureServices(IServiceCollection services)
+	private static IServiceCollection InfrastructureServices(IServiceCollection services, IConfiguration configuration)
 	{
 		services.AddTransient<IExceptionLogger, DbExceptionLogger>();
+		services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+		services.AddScoped<ICloudinaryStorage, CloudinaryStorage>();
 
 		return services;
 	}

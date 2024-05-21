@@ -1,4 +1,4 @@
-﻿namespace InkWell.Domain.Interfaces;
+﻿namespace InkWell.Domain.Abstractions;
 
 public interface IExceptionLogger
 {

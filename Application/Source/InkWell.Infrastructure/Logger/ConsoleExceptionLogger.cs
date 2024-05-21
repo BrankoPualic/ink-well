@@ -1,4 +1,4 @@
-﻿using InkWell.Domain.Interfaces;
+﻿using InkWell.Domain.Abstractions;
 using Serilog;
 
 namespace InkWell.Infrastructure.Logger;

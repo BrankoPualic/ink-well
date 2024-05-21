@@ -6,6 +6,8 @@ using InkWell.Application.Identity.Abstractions;
 using InkWell.Application.Identity.Services;
 using InkWell.Application.Utilities;
 using InkWell.Common.Enums;
+using InkWell.Common.Storage;
+using InkWell.Domain.Abstractions;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
 
@@ -14,17 +16,21 @@ namespace InkWell.Application.BusinessLogic.Users.Commands.Signup;
 internal class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<SignupCommand, AuthResponseDto>
 {
 	private readonly IJwtService _jwtService;
+	private readonly ICloudinaryStorage _cloudinaryStorage;
 
 	public SignupCommandHandler(
 		IUnitOfWork unitOfWork,
 		IMapper mapper,
 		IValidator<SignupDto> validator,
-		IJwtService jwtService) : base(unitOfWork, mapper, validator)
+		IJwtService jwtService,
+		ICloudinaryStorage cloudinaryStorage) : base(unitOfWork, mapper, validator)
 	{
 		_jwtService = jwtService;
+		_cloudinaryStorage = cloudinaryStorage;
 	}
 
 	public IJwtService JwtService => _jwtService;
+	public ICloudinaryStorage Cloudinary => _cloudinaryStorage;
 
 	public async Task<Result<AuthResponseDto>> Handle(SignupCommand request, CancellationToken cancellationToken)
 	{
@@ -45,10 +51,26 @@ internal class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<Si
 			Email = request.User.Email,
 			Username = request.User.Username,
 			Password = UserService.HashPassword(request.User.Password),
-			//ProfilePictureUrl = request.User.ProfilePictureUrl,  Here needs to be a PhotoService functionality
 			DateOfBirth = request.User.DateOfBirth,
 			CreatedAt = DateTime.UtcNow,
 		};
+
+		if (request.User.ProfilePicture is not null)
+		{
+			var file = new FormFileAdapter(request.User.ProfilePicture);
+			try
+			{
+				var imageUploadResult = await Cloudinary.UploadPhotoAsync(file);
+
+				user.ProfilePictureUrl = imageUploadResult.Url;
+				user.PublicId = imageUploadResult.PublicId;
+			}
+			catch (Exception ex)
+			{
+				return Result.Failure<AuthResponseDto>(Error.ServerError);
+			}
+		}
+
 
 		UserRole userRole = new()
 		{

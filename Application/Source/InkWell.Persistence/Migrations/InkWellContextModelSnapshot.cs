@@ -53,7 +53,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasIndex("ExecutedBy");
 
-                    b.ToTable("Audits");
+                    b.ToTable("Audits", (string)null);
                 });
 
             modelBuilder.Entity("InkWell.Domain.Entities.Application.Category", b =>
@@ -97,7 +97,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("InkWell.Domain.Entities.Application.ErrorLog", b =>
@@ -119,7 +119,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasKey("ErrorId");
 
-                    b.ToTable("ErrorLogs");
+                    b.ToTable("ErrorLogs", (string)null);
                 });
 
             modelBuilder.Entity("InkWell.Domain.Entities.Application.Post", b =>
@@ -163,7 +163,11 @@ namespace InkWell.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Text")
+					b.Property<string>("PublicId")
+                        .IsRequired()
+						.HasColumnType("nvarchar(max)");
+
+					b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -181,7 +185,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("InkWell.Domain.Entities.Application.SigninLog", b =>
@@ -200,7 +204,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SigninLogs");
+                    b.ToTable("SigninLogs", (string)null);
                 });
 
             modelBuilder.Entity("InkWell.Domain.Entities.Application.User", b =>
@@ -261,6 +265,9 @@ namespace InkWell.Persistence.Migrations
                     b.Property<string>("ProfilePictureUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -278,7 +285,7 @@ namespace InkWell.Persistence.Migrations
 
                     SqlServerIndexBuilderExtensions.IncludeProperties(b.HasIndex("FullName", "Username", "Email"), new[] { "DateOfBirth" });
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
@@ -313,7 +320,7 @@ namespace InkWell.Persistence.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
 
                     b.HasData(
                         new
@@ -342,7 +349,7 @@ namespace InkWell.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("ActionTypes_lu");
+                    b.ToTable("ActionTypes_lu", (string)null);
 
                     b.HasData(
                         new
@@ -380,7 +387,7 @@ namespace InkWell.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("EntityTypes_lu");
+                    b.ToTable("EntityTypes_lu", (string)null);
 
                     b.HasData(
                         new
@@ -418,7 +425,7 @@ namespace InkWell.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Roles_lu");
+                    b.ToTable("Roles_lu", (string)null);
 
                     b.HasData(
                         new

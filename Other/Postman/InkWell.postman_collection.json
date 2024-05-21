@@ -65,6 +65,11 @@
 									"key": "dateOfBirth",
 									"value": "2002-08-12",
 									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": []
 								}
 							]
 						},
@@ -360,6 +365,50 @@
 							"path": [
 								"roles",
 								"A4285558-BE0F-4C7A-A934-C3152EDF3741"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "Branko",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Pualic-Radujko",
+									"type": "text"
+								},
+								{
+									"key": "dateOfBirth",
+									"value": "2002-10-10",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/Bane/Downloads/pexels-danxavier-1239291.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}user",
+							"host": [
+								"{{api-url}}user"
 							]
 						}
 					},

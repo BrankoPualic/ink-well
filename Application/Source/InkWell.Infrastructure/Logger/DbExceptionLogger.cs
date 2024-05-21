@@ -1,5 +1,5 @@
 ﻿using InkWell.Domain.Entities.Application;
-using InkWell.Domain.Interfaces;
+using InkWell.Domain.Abstractions;
 using InkWell.Domain.Repositories;
 
 namespace InkWell.Infrastructure.Logger;
