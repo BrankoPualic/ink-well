@@ -31,7 +31,7 @@ public class UserIT : TestFixture
 
 		var responseErr = await client.PostAsync("https://localhost:7219/api/auth/signup", formData);
 
-		responseErr.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+		responseErr.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
 
 		var resultErr = responseErr.Content.ReadAsStringAsync().Result;
 
@@ -87,6 +87,12 @@ public class UserIT : TestFixture
 		{
 			dbContext.Remove(item.Role);
 		}
+
+		var audit = dbContext.Audits
+			.Where(x => x.ExecutedBy.Equals(userWithRoles.First().User.Id))
+			.FirstOrDefault();
+
+		dbContext.Remove(audit);
 
 		if (userWithRoles.Count != 0)
 		{

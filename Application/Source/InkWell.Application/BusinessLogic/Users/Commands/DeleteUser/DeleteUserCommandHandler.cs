@@ -26,7 +26,7 @@ internal class DeleteUserCommandHandler : BaseHandler, ICommandHandler<DeleteUse
 		user.DeletedAt = DateTime.UtcNow;
 		user.DeletedBy = UserContext.CurrentUserId;
 
-		var roles = await UnitOfWork.UserRepository.GetUserRolesAsync(request.UserId, cancellationToken);
+		var roles = await UnitOfWork.RoleRepository.GetUserRolesAsync(request.UserId, cancellationToken);
 		foreach (var role in roles)
 		{
 			role.IsActive = false;

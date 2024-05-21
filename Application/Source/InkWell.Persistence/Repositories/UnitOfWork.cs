@@ -26,6 +26,8 @@ public class UnitOfWork : IUnitOfWork
 
 	public IAuditRepository AuditRepository => new AuditRepository(_context);
 
+	public IRoleRepository RoleRepository => new RoleRepository(_context);
+
 	public async Task<bool> Complete()
 	{
 		return await _context.SaveChangesAsync() > 0;
@@ -34,5 +36,11 @@ public class UnitOfWork : IUnitOfWork
 	public bool HasChanges()
 	{
 		return _context.ChangeTracker.HasChanges();
+	}
+
+	public void SetEntityStateToModified<T>(T entity)
+		where T : Entity
+	{
+		_context.Entry(entity).State = EntityState.Modified;
 	}
 }

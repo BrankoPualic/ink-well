@@ -95,9 +95,4 @@ public class UserRepository : RepositoryContext, IUserRepository
 	{
 		return await Context.Users.FindAsync(id, cancellationToken);
 	}
-
-	public async Task<IEnumerable<UserRole>> GetUserRolesAsync(Guid id, CancellationToken cancellationToken = default)
-	{
-		return await Context.UserRoles.Where(x => x.UserId.Equals(id)).ToListAsync(cancellationToken);
-	}
 }

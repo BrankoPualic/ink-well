@@ -1,4 +1,5 @@
 ﻿using InkWell.Domain.Entities.Application;
+using InkWell.Domain.Entities.Application_lu;
 using InkWell.Domain.Utilities._DbResponses;
 using InkWell.Domain.Utilities.Params;
 
@@ -21,6 +22,4 @@ public interface IUserRepository
 	Task<DbGetAllResponse<User>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 
 	Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
-
-	Task<IEnumerable<UserRole>> GetUserRolesAsync(Guid id, CancellationToken cancellationToken = default);
 }

@@ -332,6 +332,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UpdateRoles",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roles\": [\"Member\", \"Moderator\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}user/roles/A4285558-BE0F-4C7A-A934-C3152EDF3741",
+							"host": [
+								"{{api-url}}user"
+							],
+							"path": [
+								"roles",
+								"A4285558-BE0F-4C7A-A934-C3152EDF3741"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

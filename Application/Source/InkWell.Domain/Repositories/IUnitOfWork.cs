@@ -10,8 +10,11 @@ public interface IUnitOfWork
 	IErrorLogRepository ErrorLogRepository { get; }
 	ISigninLogRepository SigninLogRepository { get; }
 	IAuditRepository AuditRepository { get; }
+	IRoleRepository RoleRepository { get; }
 
 	Task<bool> Complete();
 
 	bool HasChanges();
+
+	void SetEntityStateToModified<T>(T entity) where T : Entity;
 }
