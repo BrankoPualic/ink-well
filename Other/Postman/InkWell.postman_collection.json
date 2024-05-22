@@ -105,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"EMAIL\" : \"sysadmin@inkwell.test\",\r\n    \"PASSWORD\" : \"SySadmin1@\"\r\n}\r\n// {\r\n//     \"EMAIL\" : \"brankopr11@test.test\",\r\n//     \"PASSWORD\" : \"Branko1@\"\r\n// }",
+							"raw": "// {\r\n//     \"EMAIL\" : \"sysadmin@inkwell.test\",\r\n//     \"PASSWORD\" : \"SySadmin1@\"\r\n// }\r\n{\r\n    \"EMAIL\" : \"brankopr11@test.test12\",\r\n    \"PASSWORD\" : \"Branko1@\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,6 +409,61 @@
 							"raw": "{{api-url}}user",
 							"host": [
 								"{{api-url}}user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Follow",
+			"item": [
+				{
+					"name": "Follow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followingId\": \"00000000-0000-0000-0000-000000000001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}follow",
+							"host": [
+								"{{api-url}}follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}follow/00000000-0000-0000-0000-000000000001",
+							"host": [
+								"{{api-url}}follow"
+							],
+							"path": [
+								"00000000-0000-0000-0000-000000000001"
 							]
 						}
 					},

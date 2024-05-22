@@ -30,15 +30,24 @@ internal class FollowUserCommandHandler : BaseHandler, ICommandHandler<FollowUse
 			return Result.Failure(Error<User>.NotFound);
 		}
 
-		var follow = new Follow
-		{
-			FollowerId = followerId,
-			FollowingId = followingUser.Id,
-			IsActive = true,
-			FollowedAt = DateTime.UtcNow,
-		};
+		var existingFollow = await UnitOfWork.FollowRepository.GetFollowAsync(followerId, followingUser.Id, cancellationToken);
 
-		UnitOfWork.FollowRepository.Follow(follow);
+		if (existingFollow is not null)
+		{
+			existingFollow.IsActive = true;
+		}
+		else
+		{
+			var follow = new Follow
+			{
+				FollowerId = followerId,
+				FollowingId = followingUser.Id,
+				IsActive = true,
+				FollowedAt = DateTime.UtcNow,
+			};
+
+			UnitOfWork.FollowRepository.Follow(follow);
+		}
 
 		if (await UnitOfWork.Complete())
 		{
