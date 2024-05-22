@@ -28,6 +28,8 @@ public class UnitOfWork : IUnitOfWork
 
 	public IRoleRepository RoleRepository => new RoleRepository(_context);
 
+	public IFollowRepository FollowRepository => new FollowRepository(_context);
+
 	public async Task<bool> Complete()
 	{
 		return await _context.SaveChangesAsync() > 0;

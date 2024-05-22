@@ -17,4 +17,6 @@ public class User : Entity
 	public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 	public virtual ICollection<SigninLog> Signins { get; set; } = new HashSet<SigninLog>();
 	public virtual ICollection<Audit> Audits { get; set; } = new HashSet<Audit>();
+	public virtual ICollection<Follow> Followers { get; set; } = new HashSet<Follow>();
+	public virtual ICollection<Follow> Following { get; set; } = new HashSet<Follow>();
 }

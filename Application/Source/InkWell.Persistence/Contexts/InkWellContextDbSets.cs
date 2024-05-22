@@ -21,4 +21,5 @@ public partial class InkWellContext
 	public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
 	public virtual DbSet<SigninLog> SigninLogs { get; set; }
 	public virtual DbSet<Audit> Audits { get; set; }
+	public virtual DbSet<Follow> Follows { get; set; }
 }

@@ -11,6 +11,7 @@ public interface IUnitOfWork
 	ISigninLogRepository SigninLogRepository { get; }
 	IAuditRepository AuditRepository { get; }
 	IRoleRepository RoleRepository { get; }
+	IFollowRepository FollowRepository { get; }
 
 	Task<bool> Complete();
 
