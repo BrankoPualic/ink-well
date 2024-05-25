@@ -1,6 +1,7 @@
 ﻿using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Entities.Application_lu;
 using InkWell.Domain.Utilities._DbResponses;
+using InkWell.Domain.Utilities._DbResponses.Users;
 using InkWell.Domain.Utilities.Params;
 
 namespace InkWell.Domain.Repositories;
@@ -19,7 +20,7 @@ public interface IUserRepository
 
 	Task<User> GetUserByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-	Task<DbGetAllResponse<User>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
+	Task<DbGetAllResponse<UserDbResponse>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 
-	Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
+	Task<DbGetAllResponse<UserDbResponse>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 }

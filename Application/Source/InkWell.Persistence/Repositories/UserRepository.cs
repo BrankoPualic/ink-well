@@ -1,6 +1,7 @@
 ﻿using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
 using InkWell.Domain.Utilities._DbResponses;
+using InkWell.Domain.Utilities._DbResponses.Users;
 using InkWell.Domain.Utilities.Params;
 using InkWell.Persistence.Contexts;
 using InkWell.Persistence.Extensions;
@@ -58,7 +59,7 @@ public class UserRepository : RepositoryContext, IUserRepository
 			.SingleOrDefaultAsync(x => x.Email == email && x.IsActive, cancellationToken);
 	}
 
-	public async Task<DbGetAllResponse<User>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
+	public async Task<DbGetAllResponse<UserDbResponse>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
 	{
 		var query = Context.Users
 			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
@@ -69,14 +70,21 @@ public class UserRepository : RepositoryContext, IUserRepository
 
 		query = query.ApplyParams(entryParams, "Username");
 
-		return new DbGetAllResponse<User>
+		return new DbGetAllResponse<UserDbResponse>
 		{
 			Count = totalCount,
-			Results = await query.ToListAsync(cancellationToken)
+			Results = await query
+			.Select(x => new UserDbResponse
+			{
+				User = x,
+				Followers = x.Followers.Count(),
+				Following = x.Following.Count(),
+			})
+			.ToListAsync(cancellationToken)
 		};
 	}
 
-	public async Task<DbGetAllResponse<User>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
+	public async Task<DbGetAllResponse<UserDbResponse>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default)
 	{
 		var query = Context.Users.AsQueryable();
 
@@ -84,10 +92,17 @@ public class UserRepository : RepositoryContext, IUserRepository
 
 		query = query.ApplyParams(entryParams, "Username");
 
-		return new DbGetAllResponse<User>
+		return new DbGetAllResponse<UserDbResponse>
 		{
 			Count = totalCount,
-			Results = await query.ToListAsync(cancellationToken)
+			Results = await query
+			.Select(x => new UserDbResponse
+			{
+				User = x,
+				Followers = x.Followers.Count(),
+				Following = x.Following.Count(),
+			})
+			.ToListAsync(cancellationToken)
 		};
 	}
 
