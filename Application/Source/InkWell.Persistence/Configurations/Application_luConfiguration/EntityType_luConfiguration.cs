@@ -12,6 +12,7 @@ internal class EntityType_luConfiguration : Entity_luConfiguration<EntityType_lu
 		builder.HasData(
 			new EntityType_lu { Id = (int)eEntityType.User, Name = eEntityType.User.ToString() },
 			new EntityType_lu { Id = (int)eEntityType.Post, Name = eEntityType.Post.ToString() },
-			new EntityType_lu { Id = (int)eEntityType.Comment, Name = eEntityType.Comment.ToString() });
+			new EntityType_lu { Id = (int)eEntityType.Comment, Name = eEntityType.Comment.ToString() },
+			new EntityType_lu { Id = (int)eEntityType.Category, Name = eEntityType.Category.ToString() });
 	}
 }

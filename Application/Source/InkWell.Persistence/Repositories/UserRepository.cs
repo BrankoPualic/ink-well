@@ -28,24 +28,20 @@ public class UserRepository : RepositoryContext, IUserRepository
 
 	public async Task<bool> UserExistByEmailAsync(string email, CancellationToken cancellationToken = default)
 	{
-		var exist = await Context.Users.SingleOrDefaultAsync(
-			x => x.Email == email, cancellationToken) is not null;
-
-		return exist;
+		return await Context.Users.SingleOrDefaultAsync(
+			x => x.Email.Equals(email), cancellationToken) is not null;
 	}
 
 	public async Task<bool> UserExistByUsernameAsync(string username, CancellationToken cancellationToken = default)
 	{
-		var exist = await Context.Users.SingleOrDefaultAsync(
-			x => x.Username == username, cancellationToken) is not null;
-
-		return exist;
+		return await Context.Users.SingleOrDefaultAsync(
+			x => x.Username.Equals(username), cancellationToken) is not null;
 	}
 
 	public async Task<bool> UserStillActiveAsync(string email, CancellationToken cancellationToken = default)
 	{
 		bool exist = await Context.Users.SingleOrDefaultAsync(
-			x => x.Email == email
+			x => x.Email.Equals(email)
 			&& x.IsActive,
 			cancellationToken) is not null;
 		return exist;
@@ -56,7 +52,7 @@ public class UserRepository : RepositoryContext, IUserRepository
 		return await Context.Users
 			.Include(x => x.UserRoles.Where(ur => ur.IsActive))
 			.ThenInclude(x => x.Role)
-			.SingleOrDefaultAsync(x => x.Email == email && x.IsActive, cancellationToken);
+			.SingleOrDefaultAsync(x => x.Email.Equals(email) && x.IsActive, cancellationToken);
 	}
 
 	public async Task<DbGetAllResponse<UserDbResponse>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default)

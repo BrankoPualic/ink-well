@@ -12,6 +12,23 @@ public class CategoryRepository : RepositoryContext, ICategoryRepository
 	{
 	}
 
+	public void AddCategory(Category category)
+	{
+		Context.Categories.Add(category);
+	}
+
+	public async Task<bool> CategoryExistByNameAsync(string name, CancellationToken cancellationToken = default)
+	{
+		return await Context.Categories.SingleOrDefaultAsync(
+			x => x.Name.Equals(name), cancellationToken) is not null;
+	}
+
+	public async Task<bool> CategoryExistByIdAsync(Guid? id, CancellationToken cancellationToken = default)
+	{
+		return await Context.Categories.SingleOrDefaultAsync(
+			x => x.Id.Equals(id), cancellationToken) is not null;
+	}
+
 	public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken = default)
 	{
 		var categories = await Context.Categories

@@ -105,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\r\n//     \"EMAIL\" : \"sysadmin@inkwell.test\",\r\n//     \"PASSWORD\" : \"SySadmin1@\"\r\n// }\r\n{\r\n    \"EMAIL\" : \"brankopr11@test.test12\",\r\n    \"PASSWORD\" : \"Branko1@\"\r\n}",
+							"raw": "{\r\n    \"EMAIL\" : \"sysadmin@inkwell.test\",\r\n    \"PASSWORD\" : \"SySadmin1@\"\r\n}\r\n// {\r\n//     \"EMAIL\" : \"brankopr11@test.test12\",\r\n//     \"PASSWORD\" : \"Branko1@\"\r\n// }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -464,6 +464,53 @@
 							],
 							"path": [
 								"00000000-0000-0000-0000-000000000001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GetAllCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}category",
+							"host": [
+								"{{api-url}}category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Miami Heat\",\r\n    \"parentId\": \"9a0a24d7-a03f-44ad-9eb1-83013210dc9f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}category",
+							"host": [
+								"{{api-url}}category"
 							]
 						}
 					},
