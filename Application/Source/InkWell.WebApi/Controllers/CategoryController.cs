@@ -1,5 +1,6 @@
 ﻿using InkWell.Application.BusinessLogic.Categories.Commands.AddCategory;
 using InkWell.Application.BusinessLogic.Categories.Commands.DeleteCategory;
+using InkWell.Application.BusinessLogic.Categories.Commands.UpdateCategory;
 using InkWell.Application.BusinessLogic.Categories.Queries.GetAllCategories;
 using InkWell.Application.Dtos.Category;
 using InkWell.Common;
@@ -50,6 +51,19 @@ public class CategoryController : BaseApiController
 	public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
 	{
 		var result = await Mediator.Send(new DeleteCategoryCommand(id));
+
+		if (result.IsSuccess)
+		{
+			return NoContent();
+		}
+
+		return this.HandleErrorResponse<Category>(result.Error);
+	}
+
+	[HttpPut("{id}")]
+	public async Task<IActionResult> UpdateCategory([FromRoute] Guid id, [FromBody] EntryUpdateCategoryDto category)
+	{
+		var result = await Mediator.Send(new UpdateCategoryCommand(id, category));
 
 		if (result.IsSuccess)
 		{

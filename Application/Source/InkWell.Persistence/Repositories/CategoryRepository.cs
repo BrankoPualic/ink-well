@@ -54,4 +54,10 @@ public class CategoryRepository : RepositoryContext, ICategoryRepository
 
 		return category;
 	}
+
+	public async Task<bool> ParentCategoryStillActiveAsync(Guid? id, CancellationToken cancellationToken = default)
+	{
+		return await Context.Categories.SingleOrDefaultAsync(
+			x => x.Id.Equals(id) && x.IsActive, cancellationToken) is not null;
+	}
 }

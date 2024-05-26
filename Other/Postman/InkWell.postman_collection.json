@@ -517,6 +517,37 @@
 					"response": []
 				},
 				{
+					"name": "UpdateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parentId\": \"9a0a24d7-a03f-44ad-9eb1-83013210dc9f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}category/436e5eb2-7f5a-4d9e-bcfb-8cc4d9ff3716",
+							"host": [
+								"{{api-url}}category"
+							],
+							"path": [
+								"436e5eb2-7f5a-4d9e-bcfb-8cc4d9ff3716"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeleteCategory",
 					"request": {
 						"method": "DELETE",
