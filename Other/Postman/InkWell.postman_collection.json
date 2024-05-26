@@ -747,8 +747,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{token}}",
-								"type": "text"
+								"value": "Bearer {{token}}"
 							}
 						],
 						"url": {
@@ -758,6 +757,56 @@
 							],
 							"path": [
 								"433E9527-3219-4394-BAF7-76F7FDE67F6A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Testing",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Testing add post endpoint",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "Idemo jako",
+									"type": "text"
+								},
+								{
+									"key": "postImage",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "categoryId",
+									"value": "9DC06028-8243-4C40-A933-37A863EF357D",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}post",
+							"host": [
+								"{{api-url}}post"
 							]
 						}
 					},

@@ -17,6 +17,11 @@ public class PostRepository : RepositoryContext, IPostRepository
 	{
 	}
 
+	public void AddPost(Post post)
+	{
+		Context.Posts.Add(post);
+	}
+
 	public async Task<Post> GetPostByIdAsync(Guid postId, CancellationToken cancellationToken = default)
 	{
 		return await Context.Posts

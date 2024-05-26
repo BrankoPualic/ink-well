@@ -10,7 +10,7 @@ internal class CommentConfiguration : BaseEntityConfiguration<Comment>
 	protected override void ConfigureEntity(EntityTypeBuilder<Comment> builder)
 	{
 		builder.Property(x => x.Title)
-			.HasMaxLength(100);
+			.HasMaxLength(30);
 
 		builder.Property(x => x.Text)
 			.IsRequired();

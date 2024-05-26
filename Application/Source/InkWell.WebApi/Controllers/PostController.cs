@@ -1,5 +1,7 @@
-﻿using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
+﻿using InkWell.Application.BusinessLogic.Posts.Commands.AddPost;
+using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetAllPosts;
+using InkWell.Application.Dtos.Post;
 using InkWell.Common;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Params;
@@ -35,6 +37,20 @@ public class PostController : BaseApiController
 	public async Task<IActionResult> DeletePost([FromRoute] Guid id)
 	{
 		var result = await Mediator.Send(new DeletePostCommand(id));
+
+		if (result.IsSuccess)
+		{
+			return NoContent();
+		}
+
+		return this.HandleErrorResponse<Post>(result.Error);
+	}
+
+	[HttpPost]
+	[Authorize(Policy = Constants.BLOGGER)]
+	public async Task<IActionResult> CreatePost([FromForm] EntryPostDto post)
+	{
+		var result = await Mediator.Send(new AddPostCommand(post));
 
 		if (result.IsSuccess)
 		{

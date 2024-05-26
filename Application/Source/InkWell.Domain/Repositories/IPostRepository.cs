@@ -10,4 +10,6 @@ public interface IPostRepository
 	Task<DbGetAllResponse<PostDbResponse>> GetAllAsync(EntryParams entryParams, Guid? categoryId, CancellationToken cancellationToken = default);
 
 	Task<Post> GetPostByIdAsync(Guid postId, CancellationToken cancellationToken = default);
+
+	void AddPost(Post post);
 }
