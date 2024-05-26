@@ -751,12 +751,69 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-url}}post/433E9527-3219-4394-BAF7-76F7FDE67F6A",
+							"raw": "{{api-url}}post/D3C9A0A0-ED9D-4639-96B8-293DD069B397",
 							"host": [
 								"{{api-url}}post"
 							],
 							"path": [
-								"433E9527-3219-4394-BAF7-76F7FDE67F6A"
+								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePost",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Testing update",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "postImage",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "categoryId",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}post/D3C9A0A0-ED9D-4639-96B8-293DD069B397",
+							"host": [
+								"{{api-url}}post"
+							],
+							"path": [
+								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
 							]
 						}
 					},

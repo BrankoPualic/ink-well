@@ -1,5 +1,6 @@
 ﻿using InkWell.Application.BusinessLogic.Posts.Commands.AddPost;
 using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
+using InkWell.Application.BusinessLogic.Posts.Commands.UpdatePost;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetAllPosts;
 using InkWell.Application.Dtos.Post;
 using InkWell.Common;
@@ -51,6 +52,20 @@ public class PostController : BaseApiController
 	public async Task<IActionResult> CreatePost([FromForm] EntryPostDto post)
 	{
 		var result = await Mediator.Send(new AddPostCommand(post));
+
+		if (result.IsSuccess)
+		{
+			return NoContent();
+		}
+
+		return this.HandleErrorResponse<Post>(result.Error);
+	}
+
+	[HttpPut("{id}")]
+	[Authorize(Policy = Constants.BLOGGER)]
+	public async Task<IActionResult> UpdatePost([FromRoute] Guid id, [FromForm] EntryUpdatePostDto post)
+	{
+		var result = await Mediator.Send(new UpdatePostCommand(id, post));
 
 		if (result.IsSuccess)
 		{

@@ -10,7 +10,7 @@ public class AddPostCommandValidator : AbstractValidator<EntryPostDto>
 	{
 		RuleFor(x => x.Title)
 			.NotEmpty().WithMessage("Title is required.")
-			.MaximumLength(50).WithMessage("Title can't be mroe than 50 characters.");
+			.MaximumLength(50).WithMessage("Title can't be more than 50 characters.");
 
 		RuleFor(x => x.Description)
 			.NotEmpty().WithMessage("Description is required.")
