@@ -3,6 +3,10 @@
 public sealed class Constants
 {
 	public const string SYSTEM_USER_ID = "00000000-0000-0000-0000-000000000001";
+	public const string SYSTEM_USERADMIN_ID = "00000000-0000-0000-0000-000000000002";
+	public const string SYSTEM_MODERATOR_ID = "00000000-0000-0000-0000-000000000003";
+	public const string SYSTEM_BLOGGER_ID = "00000000-0000-0000-0000-000000000004";
+
 	public const int TOKEN_EXPIRATION_TIME = 12;
 
 	// Policies
