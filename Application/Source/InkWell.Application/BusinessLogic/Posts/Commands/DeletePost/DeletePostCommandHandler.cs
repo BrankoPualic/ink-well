@@ -3,6 +3,7 @@ using InkWell.Application.Identity.Extensions;
 using InkWell.Application.Utilities;
 using InkWell.Common;
 using InkWell.Common.Enums;
+using InkWell.Domain.Abstractions;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
 
@@ -10,9 +11,14 @@ namespace InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
 
 internal class DeletePostCommandHandler : BaseHandler, ICommandHandler<DeletePostCommand>
 {
-	public DeletePostCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
+	private readonly ICloudinaryStorage _cloudinaryStorage;
+
+	public DeletePostCommandHandler(IUnitOfWork unitOfWork, ICloudinaryStorage cloudinaryStorage) : base(unitOfWork)
 	{
+		_cloudinaryStorage = cloudinaryStorage;
 	}
+
+	public ICloudinaryStorage Cloudinary => _cloudinaryStorage;
 
 	public async Task<Result> Handle(DeletePostCommand request, CancellationToken cancellationToken)
 	{
@@ -35,6 +41,18 @@ internal class DeletePostCommandHandler : BaseHandler, ICommandHandler<DeletePos
 		post.IsActive = false;
 		post.DeletedBy = currentUserId;
 		post.DeletedAt = DateTime.UtcNow;
+
+		try
+		{
+			var deletionResult = await Cloudinary.DeletePhotoAsync(post.PublicId);
+
+			post.PostImageUrl = "";
+			post.PublicId = "";
+		}
+		catch (Exception ex)
+		{
+			Result.Failure(Error.SaveChangesFailed);
+		}
 
 		Audit log = new()
 		{
