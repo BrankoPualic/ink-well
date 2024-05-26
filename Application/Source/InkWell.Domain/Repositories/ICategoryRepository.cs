@@ -11,4 +11,6 @@ public interface ICategoryRepository
 	Task<bool> CategoryExistByNameAsync(string name, CancellationToken cancellationToken = default);
 
 	Task<bool> CategoryExistByIdAsync(Guid? id, CancellationToken cancellationToken = default);
+
+	Task<Category> GetCategoryByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }

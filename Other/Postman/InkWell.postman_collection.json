@@ -500,7 +500,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Miami Heat\",\r\n    \"parentId\": \"9a0a24d7-a03f-44ad-9eb1-83013210dc9f\"\r\n}",
+							"raw": "{\r\n    \"name\":\"child delete nivo 3\",\r\n    \"parentId\": \"371eea93-e0c7-4800-b3d9-d111b56bce3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -511,6 +511,29 @@
 							"raw": "{{api-url}}category",
 							"host": [
 								"{{api-url}}category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}category/436e5eb2-7f5a-4d9e-bcfb-8cc4d9ff3716",
+							"host": [
+								"{{api-url}}category"
+							],
+							"path": [
+								"436e5eb2-7f5a-4d9e-bcfb-8cc4d9ff3716"
 							]
 						}
 					},

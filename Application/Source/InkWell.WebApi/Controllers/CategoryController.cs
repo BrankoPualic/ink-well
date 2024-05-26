@@ -1,4 +1,5 @@
 ﻿using InkWell.Application.BusinessLogic.Categories.Commands.AddCategory;
+using InkWell.Application.BusinessLogic.Categories.Commands.DeleteCategory;
 using InkWell.Application.BusinessLogic.Categories.Queries.GetAllCategories;
 using InkWell.Application.Dtos.Category;
 using InkWell.Common;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InkWell.WebApi.Controllers;
 
+[Authorize(Policy = Constants.ADMINISTRATOR_USERADMIN_MODERATOR)]
 public class CategoryController : BaseApiController
 {
 	public CategoryController(IMediator mediator) : base(mediator)
@@ -18,6 +20,7 @@ public class CategoryController : BaseApiController
 	}
 
 	[HttpGet]
+	[AllowAnonymous]
 	public async Task<IActionResult> GetCategories()
 	{
 		var result = await Mediator.Send(new GetAllCategoriesQuery());
@@ -31,10 +34,22 @@ public class CategoryController : BaseApiController
 	}
 
 	[HttpPost]
-	[Authorize(Policy = Constants.ADMINISTRATOR_USERADMIN_MODERATOR)]
 	public async Task<IActionResult> AddCategory([FromBody] EntryCategoryDto category)
 	{
 		var result = await Mediator.Send(new AddCategoryCommand(category));
+
+		if (result.IsSuccess)
+		{
+			return NoContent();
+		}
+
+		return this.HandleErrorResponse<Category>(result.Error);
+	}
+
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+	{
+		var result = await Mediator.Send(new DeleteCategoryCommand(id));
 
 		if (result.IsSuccess)
 		{
