@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InkWell.Persistence.Migrations
 {
     [DbContext(typeof(InkWellContext))]
-    [Migration("20240526141837_CreateUserSeed_ForEachRole")]
+    [Migration("20240526150633_CreateUserSeed_ForEachRole")]
     partial class CreateUserSeed_ForEachRole
     {
         /// <inheritdoc />
@@ -106,48 +106,48 @@ namespace InkWell.Persistence.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-123345123411"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2897),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7162),
                             IsActive = true,
                             Name = "Travel"
                         },
                         new
                         {
-                            Id = new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2930),
+                            Id = new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937"),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7194),
                             IsActive = true,
                             Name = "Sport"
                         },
                         new
                         {
-                            Id = new Guid("8803a648-b271-4417-bd28-82fe4b08a416"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2934),
+                            Id = new Guid("338a1dcd-c602-4f97-875e-006406083232"),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7198),
                             IsActive = true,
                             Name = "Basketball",
-                            ParentId = new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2")
+                            ParentId = new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937")
                         },
                         new
                         {
-                            Id = new Guid("3d937d91-8141-42ed-8ab0-356edef96582"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2936),
+                            Id = new Guid("2ff6f1c1-65f6-4b98-a6b6-a595409447a5"),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7216),
                             IsActive = true,
                             Name = "Football",
-                            ParentId = new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2")
+                            ParentId = new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937")
                         },
                         new
                         {
-                            Id = new Guid("c82cd82f-f667-448c-8832-55c8d02d0c14"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2938),
+                            Id = new Guid("3c33c685-8268-4db6-86af-227d43ef461d"),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7218),
                             IsActive = true,
                             Name = "NBA",
-                            ParentId = new Guid("8803a648-b271-4417-bd28-82fe4b08a416")
+                            ParentId = new Guid("338a1dcd-c602-4f97-875e-006406083232")
                         },
                         new
                         {
-                            Id = new Guid("2a317125-8b08-4a2e-ba7c-acf0def4176d"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2940),
+                            Id = new Guid("9dc06028-8243-4c40-a933-37a863ef357d"),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7220),
                             IsActive = true,
                             Name = "Euroleague",
-                            ParentId = new Guid("8803a648-b271-4417-bd28-82fe4b08a416")
+                            ParentId = new Guid("338a1dcd-c602-4f97-875e-006406083232")
                         });
                 });
 
@@ -341,10 +341,10 @@ namespace InkWell.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0c53bbce-c39c-43b4-b666-324b518ef6c6"),
+                            Id = new Guid("8deef802-89fc-4128-9fa4-2da1b6c874e2"),
                             AuthorId = new Guid("00000000-0000-0000-0000-000000000001"),
                             CategoryId = new Guid("00000000-0000-0000-0000-123345123411"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 670, DateTimeKind.Utc).AddTicks(4940),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 447, DateTimeKind.Utc).AddTicks(834),
                             Description = "This is the first post created by seeds.",
                             IsActive = false,
                             PostImageUrl = "",
@@ -355,10 +355,10 @@ namespace InkWell.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d3f2119e-47e8-483e-9826-94d65ef3e7b4"),
+                            Id = new Guid("433e9527-3219-4394-baf7-76f7fde67f6a"),
                             AuthorId = new Guid("00000000-0000-0000-0000-000000000001"),
                             CategoryId = new Guid("00000000-0000-0000-0000-123345123411"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 670, DateTimeKind.Utc).AddTicks(4945),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 447, DateTimeKind.Utc).AddTicks(839),
                             Description = "This is the second post created by seeds.",
                             IsActive = false,
                             PostImageUrl = "",
@@ -495,53 +495,53 @@ namespace InkWell.Persistence.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 780, DateTimeKind.Utc).AddTicks(2952),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 556, DateTimeKind.Utc).AddTicks(644),
                             DateOfBirth = new DateOnly(2002, 10, 10),
                             Email = "sysadmin@inkwell.test",
                             FirstName = "Branko",
                             FullName = "",
                             IsActive = false,
                             LastName = "Pualic-Radujko",
-                            Password = "$2a$11$ikIuG.UcIYfV0KeQdCBp0uy3GXfO8vVh/4uq8RkgL4bd4n.8.uWGG",
+                            Password = "$2a$11$qpQjCn3v29d1t53GOrEY9uhXIokdCKL8hk2FDdDLYGQd8F8Nj6MC6",
                             Username = "system-admin1"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 891, DateTimeKind.Utc).AddTicks(1241),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 667, DateTimeKind.Utc).AddTicks(6274),
                             DateOfBirth = new DateOnly(2002, 10, 10),
                             Email = "sysuseradmin@inkwell.test",
                             FirstName = "Branko",
                             FullName = "",
                             IsActive = false,
                             LastName = "Pualic-Radujko",
-                            Password = "$2a$11$x1UPD.IJmdDugC.YLpVCzOgKeGIpUE5wNcIMIRDxfsnKrsbYRoKIC",
+                            Password = "$2a$11$Zh3gn5NsUbKABcFoETh.uOPkfOi0Co.q81cqCHKbkiVQ4PLfDf1Y.",
                             Username = "system-useradmin1"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 36, 998, DateTimeKind.Utc).AddTicks(6344),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 776, DateTimeKind.Utc).AddTicks(4984),
                             DateOfBirth = new DateOnly(2002, 10, 10),
                             Email = "sysmoderator@inkwell.test",
                             FirstName = "Branko",
                             FullName = "",
                             IsActive = false,
                             LastName = "Pualic-Radujko",
-                            Password = "$2a$11$/mJD2uummYp6wZ6MLNyaOOa/eJagk663yx/WQn.pO6rB3oV5JAt5e",
+                            Password = "$2a$11$7NAGyYYZ8ECdCbBOquu9Ae6GqGSGty.BCTb4GpDfRv7dtHgshLVF6",
                             Username = "system-moderator1"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                            CreatedAt = new DateTime(2024, 5, 26, 14, 18, 37, 105, DateTimeKind.Utc).AddTicks(6318),
+                            CreatedAt = new DateTime(2024, 5, 26, 15, 6, 32, 884, DateTimeKind.Utc).AddTicks(9119),
                             DateOfBirth = new DateOnly(2002, 10, 10),
                             Email = "sysblogger@inkwell.test",
                             FirstName = "Branko",
                             FullName = "",
                             IsActive = false,
                             LastName = "Pualic-Radujko",
-                            Password = "$2a$11$zTVJ4Z5Y4NWHXTUrzdt7X.mmieSmqJBas9ET3msP68Hio2C1DZYLC",
+                            Password = "$2a$11$8C2sRW6x8LU/KP7JLZkUSudGTf0Eu7U2Daf/Y/RhLckqV5/E..6R2",
                             Username = "system-blogger1"
                         });
                 });
@@ -570,6 +570,24 @@ namespace InkWell.Persistence.Migrations
                         {
                             UserId = new Guid("00000000-0000-0000-0000-000000000001"),
                             RoleId = 3,
+                            IsActive = true
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-000000000002"),
+                            RoleId = 4,
+                            IsActive = true
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-000000000003"),
+                            RoleId = 2,
+                            IsActive = true
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-000000000004"),
+                            RoleId = 5,
                             IsActive = true
                         });
                 });

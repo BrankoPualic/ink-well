@@ -30,6 +30,13 @@ public class UserContextMiddleware
 
 			UserContext.CurrentUserId = Guid.Parse(userIdClaim);
 
+			var roles = context.User.Claims
+				.Where(x => x.Type == ClaimTypes.Role)
+				.Select(x => x.Value)
+				.ToList();
+
+			UserContext.CurrentRoles = roles;
+
 			await _next(context);
 		}
 		catch (Exception ex)

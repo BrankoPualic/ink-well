@@ -1,4 +1,5 @@
-﻿using InkWell.Domain.Repositories;
+﻿using InkWell.Domain.Entities.Application;
+using InkWell.Domain.Repositories;
 using InkWell.Domain.Utilities._DbResponses;
 using InkWell.Domain.Utilities._DbResponses.Posts;
 using InkWell.Domain.Utilities._DbResponses.Users;
@@ -16,11 +17,18 @@ public class PostRepository : RepositoryContext, IPostRepository
 	{
 	}
 
+	public async Task<Post> GetPostByIdAsync(Guid postId, CancellationToken cancellationToken = default)
+	{
+		return await Context.Posts
+			.SingleOrDefaultAsync(x => x.Id.Equals(postId) && x.IsActive, cancellationToken);
+	}
+
 	async Task<DbGetAllResponse<PostDbResponse>> IPostRepository.GetAllAsync(EntryParams entryParams, Guid? categoryId, CancellationToken cancellationToken)
 	{
 		var query = Context.Posts
 			.Include(x => x.Category)
 			.Include(x => x.Author)
+			.Where(x => x.IsActive)
 			.AsQueryable();
 
 		if (categoryId is not null)
@@ -29,7 +37,7 @@ public class PostRepository : RepositoryContext, IPostRepository
 		}
 
 		query = query.ApplyParams(entryParams, "Title");
-		
+
 		int totalCount = await query.CountAsync(cancellationToken);
 
 		return new DbGetAllResponse<PostDbResponse>

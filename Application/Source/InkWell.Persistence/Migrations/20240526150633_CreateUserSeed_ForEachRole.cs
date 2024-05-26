@@ -53,20 +53,20 @@ namespace InkWell.Persistence.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("00000000-0000-0000-0000-123345123411"),
                 column: "CreatedAt",
-                value: new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2897));
+                value: new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7162));
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "DeletedBy", "IsActive", "ModifiedAt", "ModifiedBy", "Name", "ParentId" },
-                values: new object[] { new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2"), new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2930), null, null, true, null, null, "Sport", null });
+                values: new object[] { new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937"), new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7194), null, null, true, null, null, "Sport", null });
 
             migrationBuilder.InsertData(
                 table: "Posts",
                 columns: new[] { "Id", "AuthorId", "CategoryId", "CreatedAt", "DeletedAt", "DeletedBy", "Description", "ModifiedAt", "ModifiedBy", "PostImageUrl", "PublicId", "Text", "Title", "ViewCount" },
                 values: new object[,]
                 {
-                    { new Guid("0c53bbce-c39c-43b4-b666-324b518ef6c6"), new Guid("00000000-0000-0000-0000-000000000001"), new Guid("00000000-0000-0000-0000-123345123411"), new DateTime(2024, 5, 26, 14, 18, 36, 670, DateTimeKind.Utc).AddTicks(4940), null, null, "This is the first post created by seeds.", null, null, "", "", "Hello from Admin.", "First Post", 0 },
-                    { new Guid("d3f2119e-47e8-483e-9826-94d65ef3e7b4"), new Guid("00000000-0000-0000-0000-000000000001"), new Guid("00000000-0000-0000-0000-123345123411"), new DateTime(2024, 5, 26, 14, 18, 36, 670, DateTimeKind.Utc).AddTicks(4945), null, null, "This is the second post created by seeds.", null, null, "", "", "Hello from Admin.", "Second Post", 0 }
+                    { new Guid("433e9527-3219-4394-baf7-76f7fde67f6a"), new Guid("00000000-0000-0000-0000-000000000001"), new Guid("00000000-0000-0000-0000-123345123411"), new DateTime(2024, 5, 26, 15, 6, 32, 447, DateTimeKind.Utc).AddTicks(839), null, null, "This is the second post created by seeds.", null, null, "", "", "Hello from Admin.", "Second Post", 0 },
+                    { new Guid("8deef802-89fc-4128-9fa4-2da1b6c874e2"), new Guid("00000000-0000-0000-0000-000000000001"), new Guid("00000000-0000-0000-0000-123345123411"), new DateTime(2024, 5, 26, 15, 6, 32, 447, DateTimeKind.Utc).AddTicks(834), null, null, "This is the first post created by seeds.", null, null, "", "", "Hello from Admin.", "First Post", 0 }
                 });
 
             migrationBuilder.UpdateData(
@@ -74,16 +74,16 @@ namespace InkWell.Persistence.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("00000000-0000-0000-0000-000000000001"),
                 columns: new[] { "CreatedAt", "Password" },
-                values: new object[] { new DateTime(2024, 5, 26, 14, 18, 36, 780, DateTimeKind.Utc).AddTicks(2952), "$2a$11$ikIuG.UcIYfV0KeQdCBp0uy3GXfO8vVh/4uq8RkgL4bd4n.8.uWGG" });
+                values: new object[] { new DateTime(2024, 5, 26, 15, 6, 32, 556, DateTimeKind.Utc).AddTicks(644), "$2a$11$qpQjCn3v29d1t53GOrEY9uhXIokdCKL8hk2FDdDLYGQd8F8Nj6MC6" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedAt", "DateOfBirth", "DeletedAt", "DeletedBy", "Email", "FirstName", "LastName", "ModifiedAt", "ModifiedBy", "Password", "ProfilePictureUrl", "PublicId", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(2024, 5, 26, 14, 18, 36, 891, DateTimeKind.Utc).AddTicks(1241), new DateOnly(2002, 10, 10), null, null, "sysuseradmin@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$x1UPD.IJmdDugC.YLpVCzOgKeGIpUE5wNcIMIRDxfsnKrsbYRoKIC", null, null, "system-useradmin1" },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(2024, 5, 26, 14, 18, 36, 998, DateTimeKind.Utc).AddTicks(6344), new DateOnly(2002, 10, 10), null, null, "sysmoderator@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$/mJD2uummYp6wZ6MLNyaOOa/eJagk663yx/WQn.pO6rB3oV5JAt5e", null, null, "system-moderator1" },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), new DateTime(2024, 5, 26, 14, 18, 37, 105, DateTimeKind.Utc).AddTicks(6318), new DateOnly(2002, 10, 10), null, null, "sysblogger@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$zTVJ4Z5Y4NWHXTUrzdt7X.mmieSmqJBas9ET3msP68Hio2C1DZYLC", null, null, "system-blogger1" }
+                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(2024, 5, 26, 15, 6, 32, 667, DateTimeKind.Utc).AddTicks(6274), new DateOnly(2002, 10, 10), null, null, "sysuseradmin@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$Zh3gn5NsUbKABcFoETh.uOPkfOi0Co.q81cqCHKbkiVQ4PLfDf1Y.", null, null, "system-useradmin1" },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(2024, 5, 26, 15, 6, 32, 776, DateTimeKind.Utc).AddTicks(4984), new DateOnly(2002, 10, 10), null, null, "sysmoderator@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$7NAGyYYZ8ECdCbBOquu9Ae6GqGSGty.BCTb4GpDfRv7dtHgshLVF6", null, null, "system-moderator1" },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), new DateTime(2024, 5, 26, 15, 6, 32, 884, DateTimeKind.Utc).AddTicks(9119), new DateOnly(2002, 10, 10), null, null, "sysblogger@inkwell.test", "Branko", "Pualic-Radujko", null, null, "$2a$11$8C2sRW6x8LU/KP7JLZkUSudGTf0Eu7U2Daf/Y/RhLckqV5/E..6R2", null, null, "system-blogger1" }
                 });
 
             migrationBuilder.InsertData(
@@ -91,10 +91,27 @@ namespace InkWell.Persistence.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "DeletedBy", "IsActive", "ModifiedAt", "ModifiedBy", "Name", "ParentId" },
                 values: new object[,]
                 {
-                    { new Guid("3d937d91-8141-42ed-8ab0-356edef96582"), new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2936), null, null, true, null, null, "Football", new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2") },
-                    { new Guid("8803a648-b271-4417-bd28-82fe4b08a416"), new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2934), null, null, true, null, null, "Basketball", new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2") },
-                    { new Guid("2a317125-8b08-4a2e-ba7c-acf0def4176d"), new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2940), null, null, true, null, null, "Euroleague", new Guid("8803a648-b271-4417-bd28-82fe4b08a416") },
-                    { new Guid("c82cd82f-f667-448c-8832-55c8d02d0c14"), new DateTime(2024, 5, 26, 14, 18, 36, 665, DateTimeKind.Utc).AddTicks(2938), null, null, true, null, null, "NBA", new Guid("8803a648-b271-4417-bd28-82fe4b08a416") }
+                    { new Guid("2ff6f1c1-65f6-4b98-a6b6-a595409447a5"), new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7216), null, null, true, null, null, "Football", new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937") },
+                    { new Guid("338a1dcd-c602-4f97-875e-006406083232"), new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7198), null, null, true, null, null, "Basketball", new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleId", "UserId", "IsActive" },
+                values: new object[,]
+                {
+                    { 4, new Guid("00000000-0000-0000-0000-000000000002"), true },
+                    { 2, new Guid("00000000-0000-0000-0000-000000000003"), true },
+                    { 5, new Guid("00000000-0000-0000-0000-000000000004"), true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "DeletedBy", "IsActive", "ModifiedAt", "ModifiedBy", "Name", "ParentId" },
+                values: new object[,]
+                {
+                    { new Guid("3c33c685-8268-4db6-86af-227d43ef461d"), new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7218), null, null, true, null, null, "NBA", new Guid("338a1dcd-c602-4f97-875e-006406083232") },
+                    { new Guid("9dc06028-8243-4c40-a933-37a863ef357d"), new DateTime(2024, 5, 26, 15, 6, 32, 441, DateTimeKind.Utc).AddTicks(7220), null, null, true, null, null, "Euroleague", new Guid("338a1dcd-c602-4f97-875e-006406083232") }
                 });
         }
 
@@ -104,27 +121,47 @@ namespace InkWell.Persistence.Migrations
             migrationBuilder.DeleteData(
                 table: "Categories",
                 keyColumn: "Id",
-                keyValue: new Guid("2a317125-8b08-4a2e-ba7c-acf0def4176d"));
+                keyValue: new Guid("2ff6f1c1-65f6-4b98-a6b6-a595409447a5"));
 
             migrationBuilder.DeleteData(
                 table: "Categories",
                 keyColumn: "Id",
-                keyValue: new Guid("3d937d91-8141-42ed-8ab0-356edef96582"));
+                keyValue: new Guid("3c33c685-8268-4db6-86af-227d43ef461d"));
 
             migrationBuilder.DeleteData(
                 table: "Categories",
                 keyColumn: "Id",
-                keyValue: new Guid("c82cd82f-f667-448c-8832-55c8d02d0c14"));
+                keyValue: new Guid("9dc06028-8243-4c40-a933-37a863ef357d"));
 
             migrationBuilder.DeleteData(
                 table: "Posts",
                 keyColumn: "Id",
-                keyValue: new Guid("0c53bbce-c39c-43b4-b666-324b518ef6c6"));
+                keyValue: new Guid("433e9527-3219-4394-baf7-76f7fde67f6a"));
 
             migrationBuilder.DeleteData(
                 table: "Posts",
                 keyColumn: "Id",
-                keyValue: new Guid("d3f2119e-47e8-483e-9826-94d65ef3e7b4"));
+                keyValue: new Guid("8deef802-89fc-4128-9fa4-2da1b6c874e2"));
+
+            migrationBuilder.DeleteData(
+                table: "UserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { 4, new Guid("00000000-0000-0000-0000-000000000002") });
+
+            migrationBuilder.DeleteData(
+                table: "UserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { 2, new Guid("00000000-0000-0000-0000-000000000003") });
+
+            migrationBuilder.DeleteData(
+                table: "UserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { 5, new Guid("00000000-0000-0000-0000-000000000004") });
+
+            migrationBuilder.DeleteData(
+                table: "Categories",
+                keyColumn: "Id",
+                keyValue: new Guid("338a1dcd-c602-4f97-875e-006406083232"));
 
             migrationBuilder.DeleteData(
                 table: "Users",
@@ -144,12 +181,7 @@ namespace InkWell.Persistence.Migrations
             migrationBuilder.DeleteData(
                 table: "Categories",
                 keyColumn: "Id",
-                keyValue: new Guid("8803a648-b271-4417-bd28-82fe4b08a416"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("3ccbd6ce-ea86-4ad9-a0e5-47ff912729f2"));
+                keyValue: new Guid("dbbf5a8e-85fa-4c0a-af95-3526bde6b937"));
 
             migrationBuilder.UpdateData(
                 table: "Categories",

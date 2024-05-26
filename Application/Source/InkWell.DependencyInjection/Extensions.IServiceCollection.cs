@@ -77,6 +77,11 @@ public static class Extensions
 				eUserRole.UserAdmin.ToString(),
 				eUserRole.Moderator.ToString()
 				))
+			.AddPolicy(Constants.ADMINISTRATOR_MODERATOR_BLOGGER, policy => policy.RequireRole(
+				eUserRole.Administrator.ToString(),
+				eUserRole.Moderator.ToString(),
+				eUserRole.Blogger.ToString()
+				))
 			.AddPolicy(Constants.BLOGGER, policy => policy.RequireRole(
 				eUserRole.Blogger.ToString()
 				))

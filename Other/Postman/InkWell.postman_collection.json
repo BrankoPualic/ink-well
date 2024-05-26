@@ -86,7 +86,7 @@
 					"response": []
 				},
 				{
-					"name": "Signin",
+					"name": "SigninAdmin",
 					"event": [
 						{
 							"listen": "test",
@@ -105,7 +105,124 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"EMAIL\" : \"sysadmin@inkwell.test\",\r\n    \"PASSWORD\" : \"SySadmin1@\"\r\n}\r\n// {\r\n//     \"EMAIL\" : \"brankopr11@test.test12\",\r\n//     \"PASSWORD\" : \"Branko1@\"\r\n// }",
+							"raw": "{\r\n    \"email\" : \"sysadmin@inkwell.test\",\r\n    \"password\" : \"SySadmin1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}auth/signin",
+							"host": [
+								"{{api-url}}auth"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SigninUseradmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", res.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"sysuseradmin@inkwell.test\",\r\n    \"password\" : \"SySuseradmin1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}auth/signin",
+							"host": [
+								"{{api-url}}auth"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SigninModerator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", res.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"sysmoderator@inkwell.test\",\r\n    \"password\" : \"SySmoderator1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}auth/signin",
+							"host": [
+								"{{api-url}}auth"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SigninBlogger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", res.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"sysblogger@inkwell.test\",\r\n    \"password\" : \"SySblogger1@\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -618,6 +735,29 @@
 									"value": null,
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePost",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}post/433E9527-3219-4394-BAF7-76F7FDE67F6A",
+							"host": [
+								"{{api-url}}post"
+							],
+							"path": [
+								"433E9527-3219-4394-BAF7-76F7FDE67F6A"
 							]
 						}
 					},

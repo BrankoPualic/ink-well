@@ -14,6 +14,7 @@ public sealed class Constants
 	public const string ADMINISTRATOR = "A";
 	public const string ADMINISTRATOR_USERADMIN = "AUA";
 	public const string ADMINISTRATOR_USERADMIN_MODERATOR = "AUAM";
+	public const string ADMINISTRATOR_MODERATOR_BLOGGER = "AMB";
 	public const string BLOGGER = "B";
 	public const string MEMBER = "M";
 

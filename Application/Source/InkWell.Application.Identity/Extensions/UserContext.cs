@@ -16,11 +16,24 @@ public static class UserContext
 			}
 			return _userContextData.Value.UserId;
 		}
-		set => _userContextData.Value = new UserContextData { UserId = value };
+		set => _userContextData.Value = new UserContextData { UserId = value, Roles = CurrentRoles };
+	}
+	
+	public static List<string> CurrentRoles
+	{
+		get => _userContextData.Value?.Roles ?? new List<string>();
+		set
+		{
+			if(_userContextData.Value is not null)
+			{
+				_userContextData.Value.Roles = value;
+			}
+		}
 	}
 
 	internal class UserContextData
 	{
 		public Guid UserId { get; set; }
+		public List<string> Roles { get; set; } = new();
 	}
 }

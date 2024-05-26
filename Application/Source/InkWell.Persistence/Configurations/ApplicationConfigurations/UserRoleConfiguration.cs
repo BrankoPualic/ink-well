@@ -25,12 +25,44 @@ internal class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
 			.HasForeignKey(x => x.UserId)
 			.OnDelete(DeleteBehavior.Restrict);
 
-		builder.HasData(
-			new UserRole
-			{
-				UserId = Guid.Parse(Constants.SYSTEM_USER_ID),
-				RoleId = (int)eUserRole.Administrator,
-				IsActive = true
-			});
+		var userroles = UserRoleSeeds();
+		builder.HasData(userroles);
+	}
+
+	private static List<UserRole> UserRoleSeeds()
+	{
+		var list = new List<UserRole>();
+
+		var administrator = new UserRole
+		{
+			UserId = Guid.Parse(Constants.SYSTEM_USER_ID),
+			RoleId = (int)eUserRole.Administrator,
+			IsActive = true
+		};
+
+		var useradmin = new UserRole
+		{
+			UserId = Guid.Parse(Constants.SYSTEM_USERADMIN_ID),
+			RoleId = (int)eUserRole.UserAdmin,
+			IsActive = true
+		};
+
+		var moderator = new UserRole
+		{
+			UserId = Guid.Parse(Constants.SYSTEM_MODERATOR_ID),
+			RoleId = (int)eUserRole.Moderator,
+			IsActive = true
+		};
+
+		var blogger = new UserRole
+		{
+			UserId = Guid.Parse(Constants.SYSTEM_BLOGGER_ID),
+			RoleId = (int)eUserRole.Blogger,
+			IsActive = true
+		};
+
+		list.AddRange([administrator, useradmin, moderator, blogger]);
+
+		return list;
 	}
 }
