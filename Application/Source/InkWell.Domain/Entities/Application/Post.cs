@@ -13,5 +13,7 @@ public class Post : Entity
 	public Guid AuthorId { get; set; }
 	public Guid CategoryId { get; set; }
 	public virtual Category Category { get; set; }
-	public virtual User User { get; set; }
+	public virtual User Author { get; set; }
+	public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+	public virtual ICollection<Like> Likes { get; set; } = new HashSet<Like>();
 }

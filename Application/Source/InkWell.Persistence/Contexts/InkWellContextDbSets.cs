@@ -22,4 +22,7 @@ public partial class InkWellContext
 	public virtual DbSet<SigninLog> SigninLogs { get; set; }
 	public virtual DbSet<Audit> Audits { get; set; }
 	public virtual DbSet<Follow> Follows { get; set; }
+	public virtual DbSet<Comment> Comments { get; set; }
+	public virtual DbSet<Like> Likes { get; set; }
+	public virtual DbSet<Upvote> Upvotes { get; set; }
 }

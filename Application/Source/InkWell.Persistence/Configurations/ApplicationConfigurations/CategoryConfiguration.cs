@@ -1,4 +1,5 @@
-﻿using InkWell.Domain.Entities.Application;
+﻿using InkWell.Common;
+using InkWell.Domain.Entities.Application;
 using InkWell.Persistence.Configurations.BaseConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -32,7 +33,7 @@ internal class CategoryConfiguration : BaseEntityConfiguration<Category>
 
 		var c1 = new Category
 		{
-			Id = Guid.NewGuid(),
+			Id = Guid.Parse(Constants.TRAVEL_CATEGORY_ID),
 			Name = "Travel",
 			ParentId = null,
 			IsActive = true,

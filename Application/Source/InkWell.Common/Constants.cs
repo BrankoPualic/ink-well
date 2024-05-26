@@ -24,4 +24,8 @@ public sealed class Constants
 	public const string WHERE = "Where";
 	public const string ORDER_BY = "OrderBy";
 	public const string ORDER_BY_DESCENDING = "OrderByDescending";
+
+	// Seed
+
+	public const string TRAVEL_CATEGORY_ID = "00000000-0000-0000-0000-123345123411";
 }

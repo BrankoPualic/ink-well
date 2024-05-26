@@ -1,6 +1,12 @@
 ﻿using InkWell.Domain.Repositories;
+using InkWell.Domain.Utilities._DbResponses;
+using InkWell.Domain.Utilities._DbResponses.Posts;
+using InkWell.Domain.Utilities._DbResponses.Users;
+using InkWell.Domain.Utilities.Params;
 using InkWell.Persistence.Contexts;
+using InkWell.Persistence.Extensions;
 using InkWell.Persistence.Repositories.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
 
@@ -8,5 +14,41 @@ public class PostRepository : RepositoryContext, IPostRepository
 {
 	public PostRepository(InkWellContext context) : base(context)
 	{
+	}
+
+	async Task<DbGetAllResponse<PostDbResponse>> IPostRepository.GetAllAsync(EntryParams entryParams, Guid? categoryId, CancellationToken cancellationToken)
+	{
+		var query = Context.Posts
+			.Include(x => x.Category)
+			.Include(x => x.Author)
+			.AsQueryable();
+
+		if (categoryId is not null)
+		{
+			query = query.Where(x => x.CategoryId.Equals(categoryId));
+		}
+
+		query = query.ApplyParams(entryParams, "Title");
+		
+		int totalCount = await query.CountAsync(cancellationToken);
+
+		return new DbGetAllResponse<PostDbResponse>
+		{
+			Count = totalCount,
+			Results = await query
+				.Select(x => new PostDbResponse
+				{
+					Post = x,
+					Author = new UserDbResponse
+					{
+						User = x.Author,
+						Followers = x.Author.Followers.Count(),
+						Following = x.Author.Following.Count(),
+					},
+					Comments = x.Comments.Count(),
+					Likes = x.Likes.Count()
+				})
+				.ToListAsync(cancellationToken)
+		};
 	}
 }

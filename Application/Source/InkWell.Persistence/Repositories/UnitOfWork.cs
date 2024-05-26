@@ -1,48 +1,46 @@
 ﻿using InkWell.Domain.Entities.BaseEntities;
 using InkWell.Domain.Repositories;
 using InkWell.Persistence.Contexts;
+using InkWell.Persistence.Repositories.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
 
-public class UnitOfWork : IUnitOfWork
+public class UnitOfWork : RepositoryContext,IUnitOfWork
 {
-	private readonly InkWellContext _context;
-
-	public UnitOfWork(InkWellContext context)
+	public UnitOfWork(InkWellContext context) : base(context)
 	{
-		_context = context;
 	}
 
-	public IUserRepository UserRepository => new UserRepository(_context);
+	public IUserRepository UserRepository => new UserRepository(Context);
 
-	public ICategoryRepository CategoryRepository => new CategoryRepository(_context);
+	public ICategoryRepository CategoryRepository => new CategoryRepository(Context);
 
-	public IPostRepository PostRepository => new PostRepository(_context);
+	public IPostRepository PostRepository => new PostRepository(Context);
 
-	public IErrorLogRepository ErrorLogRepository => new ErrorLogRepository(_context);
+	public IErrorLogRepository ErrorLogRepository => new ErrorLogRepository(Context);
 
-	public ISigninLogRepository SigninLogRepository => new SigninLogRepository(_context);
+	public ISigninLogRepository SigninLogRepository => new SigninLogRepository(Context);
 
-	public IAuditRepository AuditRepository => new AuditRepository(_context);
+	public IAuditRepository AuditRepository => new AuditRepository(Context);
 
-	public IRoleRepository RoleRepository => new RoleRepository(_context);
+	public IRoleRepository RoleRepository => new RoleRepository(Context);
 
-	public IFollowRepository FollowRepository => new FollowRepository(_context);
+	public IFollowRepository FollowRepository => new FollowRepository(Context);
 
 	public async Task<bool> Complete()
 	{
-		return await _context.SaveChangesAsync() > 0;
+		return await Context.SaveChangesAsync() > 0;
 	}
 
 	public bool HasChanges()
 	{
-		return _context.ChangeTracker.HasChanges();
+		return Context.ChangeTracker.HasChanges();
 	}
 
 	public void SetEntityStateToModified<T>(T entity)
 		where T : Entity
 	{
-		_context.Entry(entity).State = EntityState.Modified;
+		Context.Entry(entity).State = EntityState.Modified;
 	}
 }

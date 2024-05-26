@@ -19,4 +19,7 @@ public class User : Entity
 	public virtual ICollection<Audit> Audits { get; set; } = new HashSet<Audit>();
 	public virtual ICollection<Follow> Followers { get; set; } = new HashSet<Follow>();
 	public virtual ICollection<Follow> Following { get; set; } = new HashSet<Follow>();
+	public virtual ICollection<Like> Likes { get; set; } = new HashSet<Like>();
+	public virtual ICollection<Upvote> Upvotes { get; set; } = new HashSet<Upvote>();
+	public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 }

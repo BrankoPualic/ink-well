@@ -571,6 +571,59 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "GetAllPosts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}post",
+							"host": [
+								"{{api-url}}post"
+							],
+							"query": [
+								{
+									"key": "quickSearch",
+									"value": "Second",
+									"description": "po Naslovu (search against Title)",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "min 10",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "categoryId",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
