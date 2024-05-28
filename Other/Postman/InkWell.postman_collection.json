@@ -918,7 +918,7 @@
 					"response": []
 				},
 				{
-					"name": "LikePost Copy",
+					"name": "RemoveLike",
 					"request": {
 						"method": "DELETE",
 						"header": [

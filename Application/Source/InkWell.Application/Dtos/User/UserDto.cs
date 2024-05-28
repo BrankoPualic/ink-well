@@ -9,4 +9,5 @@ public class UserDto : BaseDto
 	public string? ProfilePictureUrl { get; set; }
 	public int Followers { get; set; }
 	public int Following { get; set; }
+	public int Posts { get; set; }
 }

@@ -75,6 +75,7 @@ public class UserRepository : RepositoryContext, IUserRepository
 				User = x,
 				Followers = x.Followers.Count(),
 				Following = x.Following.Count(),
+				Posts = x.Posts.Count(),
 			})
 			.ToListAsync(cancellationToken)
 		};
@@ -97,6 +98,7 @@ public class UserRepository : RepositoryContext, IUserRepository
 				User = x,
 				Followers = x.Followers.Count(),
 				Following = x.Following.Count(),
+				Posts = x.Posts.Count(),
 			})
 			.ToListAsync(cancellationToken)
 		};

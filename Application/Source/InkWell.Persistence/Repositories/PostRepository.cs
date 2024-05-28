@@ -35,6 +35,7 @@ public class PostRepository : RepositoryContext, IPostRepository
 					User = x.Author,
 					Followers = x.Author.Followers.Count(),
 					Following = x.Author.Following.Count(),
+					Posts = x.Author.Posts.Count()
 				},
 				Comments = x.Comments.Count(),
 				Likes = x.Likes.Count()
@@ -77,6 +78,7 @@ public class PostRepository : RepositoryContext, IPostRepository
 						User = x.Author,
 						Followers = x.Author.Followers.Count(),
 						Following = x.Author.Following.Count(),
+						Posts = x.Author.Posts.Count(),
 					},
 					Comments = x.Comments.Count(),
 					Likes = x.Likes.Count()

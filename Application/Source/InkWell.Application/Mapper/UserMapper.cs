@@ -17,7 +17,8 @@ public class UserMapper : AutoMapperProfile
 			.ForMember(dest => dest.ProfilePictureUrl, opt => opt.MapFrom(src => src.User.ProfilePictureUrl))
 			.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.User.Id))
 			.ForMember(dest => dest.Followers, opt => opt.MapFrom(src => src.Followers))
-			.ForMember(dest => dest.Following, opt => opt.MapFrom(src => src.Following));
+			.ForMember(dest => dest.Following, opt => opt.MapFrom(src => src.Following))
+			.ForMember(dest => dest.Posts, opt => opt.MapFrom(src => src.Posts));
 
 		CreateMap<User, ProfileDto>()
 			.IncludeBase<User, UserDto>();
