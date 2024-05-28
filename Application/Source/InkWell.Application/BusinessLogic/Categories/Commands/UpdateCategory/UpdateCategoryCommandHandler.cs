@@ -39,8 +39,8 @@ internal class UpdateCategoryCommandHandler : BaseHandler<EntryUpdateCategoryDto
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = category.Id,
-			EntitiyTypeId = (int)eEntityType.Category,
+			EntityId = category.Id,
+			EntityTypeId = (int)eEntityType.Category,
 			ActionTypeId = (int)eActionType.Update,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

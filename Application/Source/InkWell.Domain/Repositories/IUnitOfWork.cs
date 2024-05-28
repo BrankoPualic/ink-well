@@ -12,8 +12,8 @@ public interface IUnitOfWork
 	IAuditRepository AuditRepository { get; }
 	IRoleRepository RoleRepository { get; }
 	IFollowRepository FollowRepository { get; }
-
 	ILikeRepository LikeRepository { get; }
+	ICommentRepository CommentRepository { get; }
 
 	Task<bool> Complete();
 

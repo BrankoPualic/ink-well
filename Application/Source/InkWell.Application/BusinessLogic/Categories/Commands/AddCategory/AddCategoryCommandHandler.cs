@@ -38,8 +38,8 @@ internal class AddCategoryCommandHandler : BaseHandler<EntryCategoryDto>, IComma
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = newCategory.Id,
-			EntitiyTypeId = (int)eEntityType.Category,
+			EntityId = newCategory.Id,
+			EntityTypeId = (int)eEntityType.Category,
 			ActionTypeId = (int)eActionType.Insert,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

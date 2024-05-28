@@ -35,8 +35,8 @@ internal class DeleteUserCommandHandler : BaseHandler, ICommandHandler<DeleteUse
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = request.UserId,
-			EntitiyTypeId = (int)eEntityType.User,
+			EntityId = request.UserId,
+			EntityTypeId = (int)eEntityType.User,
 			ActionTypeId = (int)eActionType.Delete,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

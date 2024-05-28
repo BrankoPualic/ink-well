@@ -80,8 +80,8 @@ internal class UpdatePostCommandHandler : BaseHandler<EntryUpdatePostDto>, IComm
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = UserContext.CurrentUserId,
-			EntitiyTypeId = (int)eEntityType.Post,
+			EntityId = UserContext.CurrentUserId,
+			EntityTypeId = (int)eEntityType.Post,
 			ActionTypeId = (int)eActionType.Update,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

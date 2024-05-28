@@ -83,8 +83,8 @@ internal class UpdateUserCommandHandler : BaseHandler<EntryUpdateUserDto>, IComm
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = UserContext.CurrentUserId,
-			EntitiyTypeId = (int)eEntityType.User,
+			EntityId = UserContext.CurrentUserId,
+			EntityTypeId = (int)eEntityType.User,
 			ActionTypeId = (int)eActionType.Update,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

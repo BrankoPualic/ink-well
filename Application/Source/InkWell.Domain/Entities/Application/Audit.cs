@@ -3,8 +3,8 @@
 public class Audit
 {
 	public Guid Id { get; set; }
-	public Guid EntitiyId { get; set; }
-	public int EntitiyTypeId { get; set; }
+	public Guid EntityId { get; set; }
+	public int EntityTypeId { get; set; }
 	public int ActionTypeId { get; set; }
 	public bool IsSuccess { get; set; }
 	public string? DetailsJson { get; set; }

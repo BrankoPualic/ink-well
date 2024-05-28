@@ -78,8 +78,8 @@ internal class UpdateRolesCommandHandler : BaseHandler<RoleDto>, ICommandHandler
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = request.UserId,
-			EntitiyTypeId = (int)eEntityType.User,
+			EntityId = request.UserId,
+			EntityTypeId = (int)eEntityType.User,
 			ActionTypeId = (int)eActionType.Update,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

@@ -66,8 +66,8 @@ internal class AddPostCommandHandler : BaseHandler<EntryPostDto>, ICommandHandle
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = newPost.Id,
-			EntitiyTypeId = (int)eEntityType.Post,
+			EntityId = newPost.Id,
+			EntityTypeId = (int)eEntityType.Post,
 			ActionTypeId = (int)eActionType.Insert,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

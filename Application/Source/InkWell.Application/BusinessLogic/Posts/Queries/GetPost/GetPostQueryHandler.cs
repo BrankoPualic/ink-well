@@ -22,8 +22,12 @@ internal class GetPostQueryHandler : BaseHandler, IQueryHandler<GetPostQuery, Re
 			return Result.Failure<ResponsePostDto>(Error<Post>.NotFound);
 		}
 
+		post.Post.ViewCount++;
+
 		var mappedResult = Mapper.Map<ResponsePostDto>(post);
 
-		return Result.Success(mappedResult);
+		return await UnitOfWork.Complete()
+			? Result.Success(mappedResult)
+			: Result.Failure<ResponsePostDto>(Error.ServerError);
 	}
 }

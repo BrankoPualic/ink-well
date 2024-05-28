@@ -30,8 +30,8 @@ internal class DeleteCategoryCommandHandler : BaseHandler, ICommandHandler<Delet
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = category.Id,
-			EntitiyTypeId = (int)eEntityType.Category,
+			EntityId = category.Id,
+			EntityTypeId = (int)eEntityType.Category,
 			ActionTypeId = (int)eActionType.Delete,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

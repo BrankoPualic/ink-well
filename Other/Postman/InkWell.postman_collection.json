@@ -885,12 +885,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api-url}}post/D3C9A0A0-ED9D-4639-96B8-293DD069B397",
+							"raw": "{{api-url}}post/EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50",
 							"host": [
 								"{{api-url}}post"
 							],
 							"path": [
-								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
+								"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50"
 							]
 						}
 					},
@@ -946,6 +946,39 @@
 							],
 							"path": [
 								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "CreateComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50\",\r\n    \"text\": \"Testing comment creation\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}comment",
+							"host": [
+								"{{api-url}}comment"
 							]
 						}
 					},

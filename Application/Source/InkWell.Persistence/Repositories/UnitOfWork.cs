@@ -30,6 +30,8 @@ public class UnitOfWork : RepositoryContext, IUnitOfWork
 
 	public ILikeRepository LikeRepository => new LikeRepository(Context);
 
+	public ICommentRepository CommentRepository => new CommentRepository(Context);
+
 	public async Task<bool> Complete()
 	{
 		return await Context.SaveChangesAsync() > 0;

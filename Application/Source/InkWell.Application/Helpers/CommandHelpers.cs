@@ -18,8 +18,8 @@ public static class CommandHelpers
             Audit log = new()
             {
                 Id = Guid.NewGuid(),
-                EntitiyId = child.Id,
-                EntitiyTypeId = (int)eEntityType.Category,
+                EntityId = child.Id,
+                EntityTypeId = (int)eEntityType.Category,
                 ActionTypeId = (int)eActionType.Delete,
                 IsSuccess = true,
                 Time = DateTime.UtcNow,

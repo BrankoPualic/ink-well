@@ -84,8 +84,8 @@ internal class SignupCommandHandler : BaseHandler<SignupDto>, ICommandHandler<Si
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = newUserId,
-			EntitiyTypeId = (int)eEntityType.User,
+			EntityId = newUserId,
+			EntityTypeId = (int)eEntityType.User,
 			ActionTypeId = (int)eActionType.Insert,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,

@@ -14,7 +14,7 @@ internal static class AuditHelper
 		{
 			int entityType = (int)EnumUtilities.GetEnum<eEntityType>(filters.EntityType);
 
-			query = query.Where(x => x.EntitiyTypeId == entityType);
+			query = query.Where(x => x.EntityTypeId == entityType);
 		}
 
 		if (filters.ActionType.HasValue())

@@ -57,8 +57,8 @@ internal class DeletePostCommandHandler : BaseHandler, ICommandHandler<DeletePos
 		Audit log = new()
 		{
 			Id = Guid.NewGuid(),
-			EntitiyId = post.Id,
-			EntitiyTypeId = (int)eEntityType.Post,
+			EntityId = post.Id,
+			EntityTypeId = (int)eEntityType.Post,
 			ActionTypeId = (int)eActionType.Delete,
 			IsSuccess = true,
 			Time = DateTime.UtcNow,
