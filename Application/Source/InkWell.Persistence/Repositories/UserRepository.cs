@@ -108,4 +108,18 @@ public class UserRepository : RepositoryContext, IUserRepository
 	{
 		return await Context.Users.FindAsync(id, cancellationToken);
 	}
+
+	public async Task<UserDbResponse> GetUserProfileAsync(Guid userId, CancellationToken cancellationToken = default)
+	{
+		return await Context.Users
+			.Where(x => x.Id.Equals(userId) && x.IsActive)
+			.Select(x => new UserDbResponse
+			{
+				User = x,
+				Followers = x.Followers.Count(),
+				Following = x.Following.Count(),
+				Posts = x.Posts.Count(),
+			})
+			.SingleOrDefaultAsync(cancellationToken);
+	}
 }

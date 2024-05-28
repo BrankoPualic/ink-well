@@ -23,4 +23,6 @@ public interface IUserRepository
 	Task<DbGetAllResponse<UserDbResponse>> GetAllByAdminAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
 
 	Task<DbGetAllResponse<UserDbResponse>> GetAllAsync(EntryParams entryParams, CancellationToken cancellationToken = default);
+
+	Task<UserDbResponse> GetUserProfileAsync(Guid userId, CancellationToken cancellationToken = default);
 }

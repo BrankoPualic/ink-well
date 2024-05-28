@@ -390,12 +390,7 @@
 					"name": "GetAllUsers",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{api-url}}user",
 							"host": [
@@ -428,6 +423,23 @@
 									"value": "brane",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}user/00000000-0000-0000-0000-000000000001",
+							"host": [
+								"{{api-url}}user"
+							],
+							"path": [
+								"00000000-0000-0000-0000-000000000001"
 							]
 						}
 					},

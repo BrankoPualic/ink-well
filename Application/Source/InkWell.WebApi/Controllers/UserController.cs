@@ -3,6 +3,7 @@ using InkWell.Application.BusinessLogic.Users.Commands.Update;
 using InkWell.Application.BusinessLogic.Users.Commands.UpdateRoles;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsers;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsersByAdmin;
+using InkWell.Application.BusinessLogic.Users.Queries.GetUserProfile;
 using InkWell.Application.Dtos.Role;
 using InkWell.Application.Dtos.User;
 using InkWell.Common;
@@ -40,6 +41,19 @@ public class UserController : BaseApiController
 	public async Task<IActionResult> GetAll([FromQuery] EntryParams entryParams)
 	{
 		var result = await Mediator.Send(new GetAllUsersQuery(entryParams));
+
+		if (result.IsSuccess)
+		{
+			return Ok(result.Value);
+		}
+
+		return this.HandleErrorResponse<User>(result.Error);
+	}
+
+	[HttpGet("{userId}")]
+	public async Task<IActionResult> GetUserProfile([FromRoute] Guid userId)
+	{
+		var result = await Mediator.Send(new GetUserProfileQuery(userId));
 
 		if (result.IsSuccess)
 		{

@@ -17,7 +17,7 @@ internal class GetPostQueryHandler : BaseHandler, IQueryHandler<GetPostQuery, Re
 	{
 		var post = await UnitOfWork.PostRepository.GetPostAsync(request.PostId, cancellationToken);
 
-		if (post.Post is null)
+		if (post is null)
 		{
 			return Result.Failure<ResponsePostDto>(Error<Post>.NotFound);
 		}

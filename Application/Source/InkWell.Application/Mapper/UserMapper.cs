@@ -20,6 +20,11 @@ public class UserMapper : AutoMapperProfile
 			.ForMember(dest => dest.Following, opt => opt.MapFrom(src => src.Following))
 			.ForMember(dest => dest.Posts, opt => opt.MapFrom(src => src.Posts));
 
+		CreateMap<UserDbResponse, ProfileDto>()
+			.IncludeBase<UserDbResponse, UserDto>()
+			.ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
+			.ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.User.DateOfBirth));
+
 		CreateMap<User, ProfileDto>()
 			.IncludeBase<User, UserDto>();
 
