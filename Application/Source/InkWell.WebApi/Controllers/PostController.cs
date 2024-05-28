@@ -2,6 +2,7 @@
 using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
 using InkWell.Application.BusinessLogic.Posts.Commands.UpdatePost;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetAllPosts;
+using InkWell.Application.BusinessLogic.Posts.Queries.GetPost;
 using InkWell.Application.Dtos.Post;
 using InkWell.Common;
 using InkWell.Domain.Entities.Application;
@@ -24,6 +25,19 @@ public class PostController : BaseApiController
 	public async Task<IActionResult> GetAll([FromQuery] EntryParams entryParams, [FromQuery] Guid? categoryId)
 	{
 		var result = await Mediator.Send(new GetAllPostsQuery(entryParams, categoryId));
+
+		if (result.IsSuccess)
+		{
+			return Ok(result.Value);
+		}
+
+		return this.HandleErrorResponse<Post>(result.Error);
+	}
+
+	[HttpGet("{postId}")]
+	public async Task<IActionResult> GetPost([FromRoute] Guid postId)
+	{
+		var result = await Mediator.Send(new GetPostQuery(postId));
 
 		if (result.IsSuccess)
 		{

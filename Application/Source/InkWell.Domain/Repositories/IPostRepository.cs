@@ -12,4 +12,6 @@ public interface IPostRepository
 	Task<Post> GetPostByIdAsync(Guid postId, CancellationToken cancellationToken = default);
 
 	void AddPost(Post post);
+
+	Task<PostDbResponse> GetPostAsync(Guid postId, CancellationToken cancellationToken = default);
 }

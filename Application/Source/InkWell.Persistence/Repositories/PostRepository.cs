@@ -22,6 +22,26 @@ public class PostRepository : RepositoryContext, IPostRepository
 		Context.Posts.Add(post);
 	}
 
+	public async Task<PostDbResponse> GetPostAsync(Guid postId, CancellationToken cancellationToken = default)
+	{
+		return await Context.Posts
+			.Include(x => x.Author)
+			.Where(x => x.Id.Equals(postId) && x.IsActive)
+			.Select(x => new PostDbResponse
+			{
+				Post = x,
+				Author = new UserDbResponse
+				{
+					User = x.Author,
+					Followers = x.Author.Followers.Count(),
+					Following = x.Author.Following.Count(),
+				},
+				Comments = x.Comments.Count(),
+				Likes = x.Likes.Count()
+			})
+			.SingleOrDefaultAsync(cancellationToken);
+	}
+
 	public async Task<Post> GetPostByIdAsync(Guid postId, CancellationToken cancellationToken = default)
 	{
 		return await Context.Posts

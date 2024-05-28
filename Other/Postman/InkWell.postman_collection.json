@@ -866,6 +866,23 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetPost",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}post/D3C9A0A0-ED9D-4639-96B8-293DD069B397",
+							"host": [
+								"{{api-url}}post"
+							],
+							"path": [
+								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
