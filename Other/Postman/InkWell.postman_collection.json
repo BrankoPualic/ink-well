@@ -671,8 +671,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{token}}",
-								"type": "text"
+								"value": "Bearer {{token}}"
 							}
 						],
 						"url": {
@@ -826,8 +825,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{token}}",
-								"type": "text"
+								"value": "Bearer {{token}}"
 							}
 						],
 						"body": {
@@ -864,6 +862,61 @@
 							"raw": "{{api-url}}post",
 							"host": [
 								"{{api-url}}post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Like",
+			"item": [
+				{
+					"name": "LikePost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"D3C9A0A0-ED9D-4639-96B8-293DD069B397\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}like",
+							"host": [
+								"{{api-url}}like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LikePost Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}like/D3C9A0A0-ED9D-4639-96B8-293DD069B397",
+							"host": [
+								"{{api-url}}like"
+							],
+							"path": [
+								"D3C9A0A0-ED9D-4639-96B8-293DD069B397"
 							]
 						}
 					},

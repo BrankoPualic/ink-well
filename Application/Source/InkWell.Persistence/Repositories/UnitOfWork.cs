@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InkWell.Persistence.Repositories;
 
-public class UnitOfWork : RepositoryContext,IUnitOfWork
+public class UnitOfWork : RepositoryContext, IUnitOfWork
 {
 	public UnitOfWork(InkWellContext context) : base(context)
 	{
@@ -27,6 +27,8 @@ public class UnitOfWork : RepositoryContext,IUnitOfWork
 	public IRoleRepository RoleRepository => new RoleRepository(Context);
 
 	public IFollowRepository FollowRepository => new FollowRepository(Context);
+
+	public ILikeRepository LikeRepository => new LikeRepository(Context);
 
 	public async Task<bool> Complete()
 	{

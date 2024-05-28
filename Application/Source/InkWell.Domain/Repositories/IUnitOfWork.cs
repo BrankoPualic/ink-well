@@ -13,6 +13,8 @@ public interface IUnitOfWork
 	IRoleRepository RoleRepository { get; }
 	IFollowRepository FollowRepository { get; }
 
+	ILikeRepository LikeRepository { get; }
+
 	Task<bool> Complete();
 
 	bool HasChanges();
