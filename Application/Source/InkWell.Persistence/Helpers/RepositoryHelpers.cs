@@ -1,6 +1,8 @@
 ﻿using InkWell.Domain.Entities.Application;
 using InkWell.Persistence.Contexts;
 using InkWell.Persistence.Repositories.Context;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 namespace InkWell.Persistence.Helpers;
 
@@ -37,5 +39,63 @@ public class RepositoryHelpers : RepositoryContext
 		}
 
 		return result;
+	}
+
+	public static IEnumerable<Comment> FilterActiveComments(Guid postId, IEnumerable<Comment> comments)
+	{
+		var result = new List<Comment>();
+
+		foreach (var comment in comments)
+		{
+			if (comment.IsActive)
+			{
+				var activeReplies = FilterActiveComments(postId, comment.Replies);
+				comment.Replies = activeReplies.ToList();
+				result.Add(comment);
+			}
+		}
+
+		return result;
+	}
+
+	public static IEnumerable<Comment> FlattenComments(IEnumerable<Comment> comments)
+	{
+		var flatList = new List<Comment>();
+
+		void Flatten(Comment comment)
+		{
+			foreach (var reply in comment.Replies)
+			{
+				flatList.Add(reply);
+				Flatten(reply);
+			}
+		}
+
+		foreach (var comment in comments)
+		{
+			Flatten(comment);
+		}
+
+		return flatList;
+	}
+
+	public static async Task LoadCommentsChildrenRecursively(IEnumerable<Comment> comments, InkWellContext context, CancellationToken cancellationToken)
+	{
+		if (comments is null)
+			return;
+
+		foreach (var comment in comments)
+		{
+			if (comment.Replies.Count == 0)
+			{
+				return;
+			}
+
+			foreach (var reply in comment.Replies)
+			{
+				await context.Entry(reply).Collection(x => x.Replies).LoadAsync(cancellationToken);
+				await LoadCommentsChildrenRecursively(comment.Replies, context, cancellationToken);
+			}
+		}
 	}
 }

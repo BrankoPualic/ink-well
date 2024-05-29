@@ -983,6 +983,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetAllPostComments",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		}
