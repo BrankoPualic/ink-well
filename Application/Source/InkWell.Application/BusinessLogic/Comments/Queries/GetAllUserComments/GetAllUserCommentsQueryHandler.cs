@@ -27,35 +27,7 @@ internal class GetAllUserCommentsQueryHandler : BaseHandler, IQueryHandler<GetAl
 			return Result.Failure<GridDto<ResponseCommentDto>>(Error<Comment>.NotFound);
 		}
 
-		var mappedResults = new List<ResponseCommentDto>();
-
-		foreach (var comment in comments.Results)
-		{
-			var com = new ResponseCommentDto
-			{
-				Id = comment.Comment.Id,
-				Title = comment.Comment.Title,
-				Text = comment.Comment.Text,
-				ParentId = comment.Comment.ParentId,
-				CreatedAt = comment.Comment.CreatedAt,
-				ModifiedAt = comment.Comment.ModifiedAt,
-				Upvotes = comment.Upvotes,
-				Replies = comment.Replies,
-				User = new Dtos.User.ProfileDto
-				{
-					Id = comment.User.User.Id,
-					Username = comment.User.User.Username,
-					ProfilePictureUrl = comment.User.User.ProfilePictureUrl,
-					FullName = comment.User.User.FullName,
-					DateOfBirth = comment.User.User.DateOfBirth,
-					Followers = comment.User.Followers,
-					Following = comment.User.Following
-				},
-				ReplyComments = comment.Comment.Replies.Select(QueryHelpers.MapComment).ToList()
-			};
-
-			mappedResults.Add(com);
-		}
+		var mappedResults = Mapper.Map<IEnumerable<ResponseCommentDto>>(comments.Results);
 
 		var result = MakeGridResponse<ResponseCommentDto>.Create(request.EntryParams, mappedResults, comments.Count);
 

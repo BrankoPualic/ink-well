@@ -101,8 +101,8 @@ public class CommentRepository : RepositoryContext, ICommentRepository
 			.Include(x => x.User)
 			.Include(x => x.Replies)
 			.Include(x => x.Post)
-			.Where(x => x.Id.Equals(commentId))
-			.SingleOrDefaultAsync();
+			.Where(x => x.Id.Equals(commentId) && x.IsActive)
+			.SingleOrDefaultAsync(cancellationToken);
 
 		if (!comment.Post.AuthorId.Equals(currentUser)
 			&& !currentUser.Equals(Guid.Parse(Constants.SYSTEM_USER_ID))
@@ -111,6 +111,8 @@ public class CommentRepository : RepositoryContext, ICommentRepository
 		{
 			comment = comment.UserId.Equals(currentUser) ? comment : null;
 		}
+
+		await RepositoryHelpers.LoadCommentsChildrenRecursively([comment], Context, cancellationToken);
 
 		return comment;
 	}

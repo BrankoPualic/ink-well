@@ -106,6 +106,7 @@ public class RepositoryHelpers : RepositoryContext
 				if (reply.IsActive)
 				{
 					await context.Entry(reply).Collection(x => x.Replies).LoadAsync(cancellationToken);
+					await context.Entry(reply).Reference(x => x.User).LoadAsync(cancellationToken);
 					await LoadCommentsChildrenRecursively(comment.Replies, context, cancellationToken);
 				}
 				else

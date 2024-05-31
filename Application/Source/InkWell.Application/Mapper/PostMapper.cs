@@ -27,7 +27,8 @@ public class PostMapper : AutoMapperProfile
 				FullName = src.Author.User.FullName,
 				DateOfBirth = src.Author.User.DateOfBirth,
 				Followers = src.Author.Followers,
-				Following = src.Author.Following
+				Following = src.Author.Following,
+				Posts = src.Author.Posts,
 			}));
 	}
 }
