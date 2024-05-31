@@ -1046,6 +1046,29 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}comment/0f92f4ff-f842-4c55-a706-4add6b5734c4",
+							"host": [
+								"{{api-url}}comment"
+							],
+							"path": [
+								"0f92f4ff-f842-4c55-a706-4add6b5734c4"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

@@ -1,4 +1,5 @@
-﻿using InkWell.Domain.Entities.Application;
+﻿using InkWell.Common;
+using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Repositories;
 using InkWell.Domain.Utilities._DbResponses;
 using InkWell.Domain.Utilities._DbResponses.Comments;
@@ -92,6 +93,26 @@ public class CommentRepository : RepositoryContext, ICommentRepository
 				Replies = x.Replies.Count(),
 			}).ToList()
 		};
+	}
+
+	public async Task<Comment> GetCommentAsync(Guid commentId, Guid currentUser, CancellationToken cancellationToken = default)
+	{
+		var comment = await Context.Comments
+			.Include(x => x.User)
+			.Include(x => x.Replies)
+			.Include(x => x.Post)
+			.Where(x => x.Id.Equals(commentId))
+			.SingleOrDefaultAsync();
+
+		if (!comment.Post.AuthorId.Equals(currentUser)
+			&& !currentUser.Equals(Guid.Parse(Constants.SYSTEM_USER_ID))
+			&& !currentUser.Equals(Guid.Parse(Constants.SYSTEM_USERADMIN_ID))
+			&& !currentUser.Equals(Guid.Parse(Constants.SYSTEM_MODERATOR_ID)))
+		{
+			comment = comment.UserId.Equals(currentUser) ? comment : null;
+		}
+
+		return comment;
 	}
 
 	public async Task<Comment> GetCommentByIdAsync(Guid? commentId, CancellationToken cancellationToken = default)

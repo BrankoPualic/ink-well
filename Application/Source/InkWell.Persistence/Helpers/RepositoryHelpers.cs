@@ -84,17 +84,34 @@ public class RepositoryHelpers : RepositoryContext
 		if (comments is null)
 			return;
 
-		foreach (var comment in comments)
+		var commentsList = comments.ToList();
+
+		foreach (var comment in commentsList)
 		{
+			if (!comment.IsActive)
+			{
+				commentsList.Remove(comment);
+				continue;
+			}
+
 			if (comment.Replies.Count == 0)
 			{
 				return;
 			}
 
-			foreach (var reply in comment.Replies)
+			var repliesList = comment.Replies.ToList();
+
+			foreach (var reply in repliesList)
 			{
-				await context.Entry(reply).Collection(x => x.Replies).LoadAsync(cancellationToken);
-				await LoadCommentsChildrenRecursively(comment.Replies, context, cancellationToken);
+				if (reply.IsActive)
+				{
+					await context.Entry(reply).Collection(x => x.Replies).LoadAsync(cancellationToken);
+					await LoadCommentsChildrenRecursively(comment.Replies, context, cancellationToken);
+				}
+				else
+				{
+					comment.Replies.Remove(reply);
+				}
 			}
 		}
 	}

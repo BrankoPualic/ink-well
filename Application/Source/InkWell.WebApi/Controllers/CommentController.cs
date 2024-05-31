@@ -1,7 +1,9 @@
 ﻿using InkWell.Application.BusinessLogic.Comments.Commands.CreateComment;
+using InkWell.Application.BusinessLogic.Comments.Commands.DeleteComment;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllPostComments;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllUserComments;
 using InkWell.Application.Dtos.Comment;
+using InkWell.Application.Utilities;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Params;
 using InkWell.WebApi.Controllers._BaseApiController;
@@ -9,6 +11,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -57,5 +60,14 @@ public class CommentController : BaseApiController
 		}
 
 		return this.HandleErrorResponse<Comment>(result.Error);
+	}
+
+	[HttpDelete("{commentId}")]
+	[Authorize]
+	public async Task<IActionResult> DeleteComment([FromRoute] Guid commentId)
+	{
+		var result = await Mediator.Send(new DeleteCommentCommand(commentId));
+
+		return this.ReturnResult<Comment>(result, HttpStatusCode.NoContent);
 	}
 }

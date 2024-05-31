@@ -1,5 +1,6 @@
 ﻿using InkWell.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Extensions;
 
@@ -29,5 +30,32 @@ public static class ControllerExtensions
 		}
 
 		return controller.BadRequest(result.Error);
+	}
+
+	public static IActionResult ReturnResult<T>(this ControllerBase controller, Result result, HttpStatusCode statusCode)
+	{
+		if (result.IsSuccess)
+		{
+			if (statusCode.Equals(HttpStatusCode.Created))
+			{
+				return controller.Created();
+			}
+			else if (statusCode.Equals(HttpStatusCode.NoContent))
+			{
+				return controller.NoContent();
+			}
+		}
+
+		return controller.HandleErrorResponse<T>(result.Error);
+	}
+
+	public static IActionResult ReturnResult<T>(this ControllerBase controller, Result<T> result)
+	{
+		if (result.IsSuccess)
+		{
+			return controller.Ok(result.Value);
+		}
+
+		return controller.HandleErrorResponse<T>(result.Error);
 	}
 }

@@ -20,4 +20,6 @@ public interface ICommentRepository
 		EntryParams entryParams,
 		Guid userId,
 		CancellationToken cancellationToken = default);
+
+	Task<Comment> GetCommentAsync(Guid commentId, Guid currentUser, CancellationToken cancellationToken = default);
 }
