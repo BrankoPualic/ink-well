@@ -2,8 +2,8 @@
 using InkWell.Application.BusinessLogic.Comments.Commands.DeleteComment;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllPostComments;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllUserComments;
+using InkWell.Application.Dtos._BaseDto;
 using InkWell.Application.Dtos.Comment;
-using InkWell.Application.Utilities;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Params;
 using InkWell.WebApi.Controllers._BaseApiController;
@@ -26,12 +26,7 @@ public class CommentController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllPostCommentsQuery(entryParams, postId));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Comment>(result.Error);
+		return this.ReturnResult<GridDto<ResponseCommentDto>, Comment>(result);
 	}
 
 	[HttpGet("user-comments")]
@@ -40,12 +35,7 @@ public class CommentController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllUserCommentsQuery(entryParams));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Comment>(result.Error);
+		return this.ReturnResult<GridDto<ResponseCommentDto>, Comment>(result);
 	}
 
 	[HttpPost]
@@ -54,12 +44,7 @@ public class CommentController : BaseApiController
 	{
 		var result = await Mediator.Send(new CreateCommentCommand(comment));
 
-		if (result.IsSuccess)
-		{
-			return Created();
-		}
-
-		return this.HandleErrorResponse<Comment>(result.Error);
+		return this.ReturnResult<Comment>(result, HttpStatusCode.Created);
 	}
 
 	[HttpDelete("{commentId}")]

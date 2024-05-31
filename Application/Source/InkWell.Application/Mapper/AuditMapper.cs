@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InkWell.Application.Dtos.Audit;
+using InkWell.Application.Dtos.User;
 using InkWell.Common.Enums;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Entities.ObjectValues;

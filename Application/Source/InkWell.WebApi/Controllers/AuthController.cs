@@ -20,12 +20,7 @@ public class AuthController : BaseApiController
 	{
 		var result = await Mediator.Send(new SignupCommand(user));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<AuthResponseDto, User>(result);
 	}
 
 	[HttpPost("signin")]
@@ -33,11 +28,6 @@ public class AuthController : BaseApiController
 	{
 		var result = await Mediator.Send(new SigninCommand(user));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<AuthResponseDto, User>(result);
 	}
 }

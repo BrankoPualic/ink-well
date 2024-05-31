@@ -1,4 +1,6 @@
 ﻿using InkWell.Application.BusinessLogic.Audits.Queries.GetAllAudits;
+using InkWell.Application.Dtos._BaseDto;
+using InkWell.Application.Dtos.Audit;
 using InkWell.Common;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Filters;
@@ -8,6 +10,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -23,11 +26,6 @@ public class AuditController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllAuditsQuery(filters, entryParams));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Audit>(result.Error);
+		return this.ReturnResult<GridDto<AuditDto>, Audit>(result);
 	}
 }

@@ -10,7 +10,10 @@ public class UserMapper : AutoMapperProfile
 	{
 		CreateMap<User, AuthResponseDto>();
 
-		CreateMap<User, UserDto>();
+		CreateMap<User, UserDto>()
+			.ForMember(dest => dest.Followers, opt => opt.MapFrom(src => src.Followers.Count()))
+			.ForMember(dest => dest.Following, opt => opt.MapFrom(src => src.Following.Count()))
+			.ForMember(dest => dest.Posts, opt => opt.MapFrom(src => src.Posts.Count()));
 
 		CreateMap<UserDbResponse, UserDto>()
 			.ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username))

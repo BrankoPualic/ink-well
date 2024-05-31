@@ -32,7 +32,7 @@ public static class ControllerExtensions
 		return controller.BadRequest(result.Error);
 	}
 
-	public static IActionResult ReturnResult<T>(this ControllerBase controller, Result result, HttpStatusCode statusCode)
+	public static IActionResult ReturnResult<TError>(this ControllerBase controller, Result result, HttpStatusCode statusCode)
 	{
 		if (result.IsSuccess)
 		{
@@ -46,16 +46,16 @@ public static class ControllerExtensions
 			}
 		}
 
-		return controller.HandleErrorResponse<T>(result.Error);
+		return controller.HandleErrorResponse<TError>(result.Error);
 	}
 
-	public static IActionResult ReturnResult<T>(this ControllerBase controller, Result<T> result)
+	public static IActionResult ReturnResult<TResponse, TError>(this ControllerBase controller, Result<TResponse> result)
 	{
 		if (result.IsSuccess)
 		{
 			return controller.Ok(result.Value);
 		}
 
-		return controller.HandleErrorResponse<T>(result.Error);
+		return controller.HandleErrorResponse<TError>(result.Error);
 	}
 }

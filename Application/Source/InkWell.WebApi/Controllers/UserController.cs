@@ -4,6 +4,7 @@ using InkWell.Application.BusinessLogic.Users.Commands.UpdateRoles;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsers;
 using InkWell.Application.BusinessLogic.Users.Queries.GetAllUsersByAdmin;
 using InkWell.Application.BusinessLogic.Users.Queries.GetUserProfile;
+using InkWell.Application.Dtos._BaseDto;
 using InkWell.Application.Dtos.Role;
 using InkWell.Application.Dtos.User;
 using InkWell.Common;
@@ -14,6 +15,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -29,12 +31,7 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllUsersByAdminQuery(entryParams));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<GridDto<PersonalInformationsDto>, User>(result);
 	}
 
 	[HttpGet]
@@ -42,12 +39,7 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllUsersQuery(entryParams));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<GridDto<UserDto>, User>(result);
 	}
 
 	[HttpGet("{userId}")]
@@ -55,12 +47,7 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetUserProfileQuery(userId));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<ProfileDto, User>(result);
 	}
 
 	[HttpDelete("{id}")]
@@ -69,12 +56,7 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new DeleteUserCommand(id));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<User>(result, HttpStatusCode.NoContent);
 	}
 
 	[HttpPut("roles/{id}")]
@@ -83,12 +65,7 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new UpdateRolesCommand(id, roles));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<User>(result, HttpStatusCode.NoContent);
 	}
 
 	[HttpPut]
@@ -97,11 +74,6 @@ public class UserController : BaseApiController
 	{
 		var result = await Mediator.Send(new UpdateUserCommand(userDto));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<User>(result, HttpStatusCode.NoContent);
 	}
 }

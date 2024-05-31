@@ -7,6 +7,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -22,12 +23,7 @@ public class LikeController : BaseApiController
 	{
 		var result = await Mediator.Send(new LikePostCommand(like));
 
-		if (result.IsSuccess)
-		{
-			return Created();
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<Post>(result, HttpStatusCode.Created);
 	}
 
 	[HttpDelete("{postId}")]
@@ -35,11 +31,6 @@ public class LikeController : BaseApiController
 	{
 		var result = await Mediator.Send(new RemoveLikeCommand(postId));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Like>(result.Error);
+		return this.ReturnResult<Like>(result, HttpStatusCode.NoContent);
 	}
 }

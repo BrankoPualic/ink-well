@@ -10,6 +10,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -26,12 +27,7 @@ public class CategoryController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllCategoriesQuery());
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Category>(result.Error);
+		return this.ReturnResult<IEnumerable<ResponseCategoryDto>, Category>(result);
 	}
 
 	[HttpPost]
@@ -39,12 +35,7 @@ public class CategoryController : BaseApiController
 	{
 		var result = await Mediator.Send(new AddCategoryCommand(category));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Category>(result.Error);
+		return this.ReturnResult<Category>(result, HttpStatusCode.Created);
 	}
 
 	[HttpDelete("{id}")]
@@ -52,12 +43,7 @@ public class CategoryController : BaseApiController
 	{
 		var result = await Mediator.Send(new DeleteCategoryCommand(id));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Category>(result.Error);
+		return this.ReturnResult<Category>(result, HttpStatusCode.NoContent);
 	}
 
 	[HttpPut("{id}")]
@@ -65,11 +51,6 @@ public class CategoryController : BaseApiController
 	{
 		var result = await Mediator.Send(new UpdateCategoryCommand(id, category));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Category>(result.Error);
+		return this.ReturnResult<Category>(result, HttpStatusCode.NoContent);
 	}
 }

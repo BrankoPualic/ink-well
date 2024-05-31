@@ -37,7 +37,7 @@ public class PostRepository : RepositoryContext, IPostRepository
 					Following = x.Author.Following.Count(),
 					Posts = x.Author.Posts.Count()
 				},
-				Comments = x.Comments.Count(),
+				Comments = x.Comments.Where(c => c.IsActive).Count(),
 				Likes = x.Likes.Count()
 			})
 			.SingleOrDefaultAsync(cancellationToken);

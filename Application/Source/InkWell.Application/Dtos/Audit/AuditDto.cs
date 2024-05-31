@@ -10,7 +10,9 @@ public class AuditDto : BaseDto
 	public string EntityType { get; set; } = string.Empty;
 	public string ActionType { get; set; } = string.Empty;
 	public bool IsSuccess { get; set; }
+
 	public AuditDetailsJsonDto? DetailsJson { get; set; }
 	public DateTime Time { get; set; }
+
 	public PersonalInformationsDto ExecutedBy { get; set; }
 }

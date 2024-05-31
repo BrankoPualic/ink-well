@@ -7,6 +7,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -22,12 +23,7 @@ public class FollowController : BaseApiController
 	{
 		var result = await Mediator.Send(new FollowUserCommand(follow));
 
-		if (result.IsSuccess)
-		{
-			return Created();
-		}
-
-		return this.HandleErrorResponse<User>(result.Error);
+		return this.ReturnResult<User>(result, HttpStatusCode.Created);
 	}
 
 	[HttpDelete("{followingId}")]
@@ -35,11 +31,6 @@ public class FollowController : BaseApiController
 	{
 		var result = await Mediator.Send(new UnfollowUserCommand(followingId));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Follow>(result.Error);
+		return this.ReturnResult<Follow>(result, HttpStatusCode.NoContent);
 	}
 }

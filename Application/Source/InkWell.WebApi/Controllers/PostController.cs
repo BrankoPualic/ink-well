@@ -3,6 +3,7 @@ using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
 using InkWell.Application.BusinessLogic.Posts.Commands.UpdatePost;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetAllPosts;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetPost;
+using InkWell.Application.Dtos._BaseDto;
 using InkWell.Application.Dtos.Post;
 using InkWell.Common;
 using InkWell.Domain.Entities.Application;
@@ -12,6 +13,7 @@ using InkWell.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace InkWell.WebApi.Controllers;
 
@@ -26,12 +28,7 @@ public class PostController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetAllPostsQuery(entryParams, categoryId));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<GridDto<ResponsePostDto>, Post>(result);
 	}
 
 	[HttpGet("{postId}")]
@@ -39,12 +36,7 @@ public class PostController : BaseApiController
 	{
 		var result = await Mediator.Send(new GetPostQuery(postId));
 
-		if (result.IsSuccess)
-		{
-			return Ok(result.Value);
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<ResponsePostDto, Post>(result);
 	}
 
 	[HttpDelete("{id}")]
@@ -53,12 +45,7 @@ public class PostController : BaseApiController
 	{
 		var result = await Mediator.Send(new DeletePostCommand(id));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<Post>(result, HttpStatusCode.NoContent);
 	}
 
 	[HttpPost]
@@ -67,12 +54,7 @@ public class PostController : BaseApiController
 	{
 		var result = await Mediator.Send(new AddPostCommand(post));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<Post>(result, HttpStatusCode.Created);
 	}
 
 	[HttpPut("{id}")]
@@ -81,11 +63,6 @@ public class PostController : BaseApiController
 	{
 		var result = await Mediator.Send(new UpdatePostCommand(id, post));
 
-		if (result.IsSuccess)
-		{
-			return NoContent();
-		}
-
-		return this.HandleErrorResponse<Post>(result.Error);
+		return this.ReturnResult<Post>(result, HttpStatusCode.NoContent);
 	}
 }
