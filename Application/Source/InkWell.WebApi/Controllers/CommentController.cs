@@ -1,5 +1,6 @@
 ﻿using InkWell.Application.BusinessLogic.Comments.Commands.CreateComment;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllPostComments;
+using InkWell.Application.BusinessLogic.Comments.Queries.GetAllUserComments;
 using InkWell.Application.Dtos.Comment;
 using InkWell.Domain.Entities.Application;
 using InkWell.Domain.Utilities.Params;
@@ -21,6 +22,20 @@ public class CommentController : BaseApiController
 	public async Task<IActionResult> GetAllPostComments([FromQuery] EntryParams entryParams, [FromRoute] Guid postId)
 	{
 		var result = await Mediator.Send(new GetAllPostCommentsQuery(entryParams, postId));
+
+		if (result.IsSuccess)
+		{
+			return Ok(result.Value);
+		}
+
+		return this.HandleErrorResponse<Comment>(result.Error);
+	}
+
+	[HttpGet("user-comments")]
+	[Authorize]
+	public async Task<IActionResult> GetAllUserComments([FromQuery] EntryParams entryParams)
+	{
+		var result = await Mediator.Send(new GetAllUserCommentsQuery(entryParams));
 
 		if (result.IsSuccess)
 		{

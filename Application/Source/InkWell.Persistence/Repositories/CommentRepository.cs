@@ -60,6 +60,40 @@ public class CommentRepository : RepositoryContext, ICommentRepository
 		};
 	}
 
+	public async Task<DbGetAllResponse<CommentDbResponse>> GetAllUserCommentsAsync(EntryParams entryParams, Guid userId, CancellationToken cancellationToken = default)
+	{
+		var topLevelComments = await Context.Comments
+			.Include(x => x.User)
+			.Include(x => x.Replies)
+			.Where(x => x.UserId.Equals(userId) && x.IsActive && x.ParentId.Equals(null))
+			.ApplyParams(entryParams)
+			.ToListAsync();
+
+		int totalCount = await Context.Comments
+			.Where(x => x.UserId.Equals(userId) && x.IsActive)
+			.CountAsync();
+
+		await RepositoryHelpers.LoadCommentsChildrenRecursively(topLevelComments, Context, cancellationToken);
+
+		return new DbGetAllResponse<CommentDbResponse>
+		{
+			Count = totalCount,
+			Results = topLevelComments.Select(x => new CommentDbResponse
+			{
+				Comment = x,
+				User = new UserDbResponse
+				{
+					User = x.User,
+					Followers = x.User.Followers.Count(),
+					Following = x.User.Following.Count(),
+					Posts = x.User.Posts.Count(),
+				},
+				Upvotes = x.Upvotes.Count(),
+				Replies = x.Replies.Count(),
+			}).ToList()
+		};
+	}
+
 	public async Task<Comment> GetCommentByIdAsync(Guid? commentId, CancellationToken cancellationToken = default)
 	{
 		return await Context.Comments

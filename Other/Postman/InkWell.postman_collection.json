@@ -968,7 +968,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": \"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50\",\r\n    \"text\": \"Testing comment creation\"\r\n}",
+							"raw": "{\r\n    \"postId\": \"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50\",\r\n    \"text\": \"Testing reply\",\r\n    \"parentId\": \"195fcff1-879c-4e01-9860-4fc7326bcd73\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -988,7 +988,62 @@
 					"name": "GetAllPostComments",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}comment/EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50",
+							"host": [
+								"{{api-url}}comment"
+							],
+							"path": [
+								"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUserComments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}comment/user-comments",
+							"host": [
+								"{{api-url}}comment"
+							],
+							"path": [
+								"user-comments"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
 					},
 					"response": []
 				}

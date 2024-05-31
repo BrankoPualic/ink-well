@@ -15,4 +15,9 @@ public interface ICommentRepository
 		EntryParams entryParams,
 		Guid postId,
 		CancellationToken cancellationToken = default);
+
+	Task<DbGetAllResponse<CommentDbResponse>> GetAllUserCommentsAsync(
+		EntryParams entryParams,
+		Guid userId,
+		CancellationToken cancellationToken = default);
 }
