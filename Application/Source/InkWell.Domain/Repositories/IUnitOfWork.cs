@@ -14,6 +14,7 @@ public interface IUnitOfWork
 	IFollowRepository FollowRepository { get; }
 	ILikeRepository LikeRepository { get; }
 	ICommentRepository CommentRepository { get; }
+	IUpvoteRepository UpvoteRepository { get; }
 
 	Task<bool> Complete();
 

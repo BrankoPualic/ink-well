@@ -32,6 +32,8 @@ public class UnitOfWork : RepositoryContext, IUnitOfWork
 
 	public ICommentRepository CommentRepository => new CommentRepository(Context);
 
+	public IUpvoteRepository UpvoteRepository => new UpvoteRepository(Context);
+
 	public async Task<bool> Complete()
 	{
 		return await Context.SaveChangesAsync() > 0;

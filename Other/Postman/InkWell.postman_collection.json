@@ -1102,6 +1102,62 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Upvote",
+			"item": [
+				{
+					"name": "SetUpvote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentId\": \"F5946D88-CF7E-4B89-BE13-B40A72CEE5F9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}upvote",
+							"host": [
+								"{{api-url}}upvote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveUpvote",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}upvote/F5946D88-CF7E-4B89-BE13-B40A72CEE5F9",
+							"host": [
+								"{{api-url}}upvote"
+							],
+							"path": [
+								"F5946D88-CF7E-4B89-BE13-B40A72CEE5F9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
