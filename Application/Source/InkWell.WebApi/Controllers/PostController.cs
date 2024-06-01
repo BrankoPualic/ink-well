@@ -2,6 +2,7 @@
 using InkWell.Application.BusinessLogic.Posts.Commands.DeletePost;
 using InkWell.Application.BusinessLogic.Posts.Commands.UpdatePost;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetAllPosts;
+using InkWell.Application.BusinessLogic.Posts.Queries.GetFypPosts;
 using InkWell.Application.BusinessLogic.Posts.Queries.GetPost;
 using InkWell.Application.Dtos._BaseDto;
 using InkWell.Application.Dtos.Post;
@@ -27,6 +28,15 @@ public class PostController : BaseApiController
 	public async Task<IActionResult> GetAll([FromQuery] EntryParams entryParams, [FromQuery] Guid? categoryId)
 	{
 		var result = await Mediator.Send(new GetAllPostsQuery(entryParams, categoryId));
+
+		return this.ReturnResult<GridDto<ResponsePostDto>, Post>(result);
+	}
+
+	[HttpGet("following-posts")]
+	[Authorize]
+	public async Task<IActionResult> GetFollowingPosts([FromQuery] EntryParams entryParams)
+	{
+		var result = await Mediator.Send(new GetFollowingPostsQuery(entryParams));
 
 		return this.ReturnResult<GridDto<ResponsePostDto>, Post>(result);
 	}

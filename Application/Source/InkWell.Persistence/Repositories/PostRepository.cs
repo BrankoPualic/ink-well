@@ -22,6 +22,45 @@ public class PostRepository : RepositoryContext, IPostRepository
 		Context.Posts.Add(post);
 	}
 
+	public async Task<DbGetAllResponse<PostDbResponse>> GetAllFollowingPostsAsync(EntryParams entryParams, Guid userId, CancellationToken cancellationToken = default)
+	{
+		var followingIds = await Context.Follows
+			.Where(x => x.FollowerId.Equals(userId) && x.IsActive)
+			.Select(x => x.FollowingId)
+			.ToListAsync();
+
+		var query = Context.Posts
+			.Include(x => x.Category)
+			.Include(x => x.Author)
+			.Where(x => x.IsActive
+			&& followingIds.Contains(x.AuthorId))
+			.AsQueryable();
+
+		query = query.ApplyParams(entryParams, "Title");
+
+		int totalCount = await query.CountAsync(cancellationToken);
+
+		return new DbGetAllResponse<PostDbResponse>
+		{
+			Count = totalCount,
+			Results = await query
+				.Select(x => new PostDbResponse
+				{
+					Post = x,
+					Author = new UserDbResponse
+					{
+						User = x.Author,
+						Followers = x.Author.Followers.Count(),
+						Following = x.Author.Following.Count(),
+						Posts = x.Author.Posts.Count(),
+					},
+					Comments = x.Comments.Count(),
+					Likes = x.Likes.Count()
+				})
+				.ToListAsync(cancellationToken)
+		};
+	}
+
 	public async Task<PostDbResponse> GetPostAsync(Guid postId, CancellationToken cancellationToken = default)
 	{
 		return await Context.Posts

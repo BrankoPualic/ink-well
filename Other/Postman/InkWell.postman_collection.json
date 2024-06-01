@@ -752,6 +752,63 @@
 					"response": []
 				},
 				{
+					"name": "GetFollowingPosts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-url}}post/following-posts",
+							"host": [
+								"{{api-url}}post"
+							],
+							"path": [
+								"following-posts"
+							],
+							"query": [
+								{
+									"key": "quickSearch",
+									"value": "Second",
+									"description": "po Naslovu (search against Title)",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "min 10",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "categoryId",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeletePost",
 					"request": {
 						"method": "DELETE",
@@ -885,12 +942,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api-url}}post/EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50",
+							"raw": "{{api-url}}post/1fdd5985-dc49-45cf-8f7b-df814435a7d6",
 							"host": [
 								"{{api-url}}post"
 							],
 							"path": [
-								"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50"
+								"1fdd5985-dc49-45cf-8f7b-df814435a7d6"
 							]
 						}
 					},
