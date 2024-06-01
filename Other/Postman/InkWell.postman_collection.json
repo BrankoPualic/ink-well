@@ -968,7 +968,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": \"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50\",\r\n    \"text\": \"Testing reply\",\r\n    \"parentId\": \"195fcff1-879c-4e01-9860-4fc7326bcd73\"\r\n}",
+							"raw": "{\r\n    \"postId\": \"EF8AF730-D9C4-41A3-A0BD-C94CD7CAAA50\",\r\n    \"text\": \"Testing reply nested\",\r\n    \"parentId\": \"f86c1236-c25c-485a-92c0-a59899a485a7\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1059,12 +1059,43 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-url}}comment/0f92f4ff-f842-4c55-a706-4add6b5734c4",
+							"raw": "{{api-url}}comment/0F92F4FF-F842-4C55-A706-4ADD6B5734C4",
 							"host": [
 								"{{api-url}}comment"
 							],
 							"path": [
-								"0f92f4ff-f842-4c55-a706-4add6b5734c4"
+								"0F92F4FF-F842-4C55-A706-4ADD6B5734C4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateComment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Testing edit function\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}comment/F5946D88-CF7E-4B89-BE13-B40A72CEE5F9",
+							"host": [
+								"{{api-url}}comment"
+							],
+							"path": [
+								"F5946D88-CF7E-4B89-BE13-B40A72CEE5F9"
 							]
 						}
 					},

@@ -1,5 +1,6 @@
 ﻿using InkWell.Application.BusinessLogic.Comments.Commands.CreateComment;
 using InkWell.Application.BusinessLogic.Comments.Commands.DeleteComment;
+using InkWell.Application.BusinessLogic.Comments.Commands.UpdateComment;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllPostComments;
 using InkWell.Application.BusinessLogic.Comments.Queries.GetAllUserComments;
 using InkWell.Application.Dtos._BaseDto;
@@ -52,6 +53,15 @@ public class CommentController : BaseApiController
 	public async Task<IActionResult> DeleteComment([FromRoute] Guid commentId)
 	{
 		var result = await Mediator.Send(new DeleteCommentCommand(commentId));
+
+		return this.ReturnResult<Comment>(result, HttpStatusCode.NoContent);
+	}
+
+	[HttpPut("{commentId}")]
+	[Authorize]
+	public async Task<IActionResult> UpdateComment([FromRoute] Guid commentId, [FromBody] EntryUpdateCommentDto comment)
+	{
+		var result = await Mediator.Send(new UpdateCommentCommand(commentId, comment));
 
 		return this.ReturnResult<Comment>(result, HttpStatusCode.NoContent);
 	}
